@@ -351,14 +351,14 @@ TEST(correctness, mul_return_value)
  (a ^= 2) ^= 1;
  EXPECT_EQ(a, 2);
  }
- /*
+ 
  TEST(correctness, not_)
  {
  big_integer a = 0xaa;
  
  EXPECT_TRUE(~a == (-a - 1));
  }
- */
+ 
  TEST(correctness, shl_)
  {
  big_integer a = 23;

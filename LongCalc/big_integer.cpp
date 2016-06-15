@@ -449,18 +449,9 @@ big_integer operator^(big_integer a, big_integer const& b)
 {
     return a ^= b;
 }
-/*
- big_integer& big_integer::operator%=(big_integer const& rhs)
- {
- mpz_tdiv_r(mpz, mpz, rhs.mpz);
- return *this;
- }
- 
- 
- big_integer big_integer::operator~() const
- {
- big_integer r;
- mpz_com(r.mpz, mpz);
- return r;
- }
- */
+
+big_integer big_integer::operator~() const
+{
+    big_integer r = -(*this + 1);
+    return r;
+}

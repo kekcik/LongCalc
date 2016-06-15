@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AF2475211D11938A0066D49D /* big_integer_testing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F41D10BB510066D49D /* big_integer_testing.cpp */; };
-		AF2475221D11938A0066D49D /* big_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F61D10BB5E0066D49D /* big_integer.cpp */; };
-		AF2475231D11938A0066D49D /* big_integer.h in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F71D10BB5E0066D49D /* big_integer.h */; };
-		AF2475241D11938A0066D49D /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F91D10BB700066D49D /* gtest-all.cc */; };
-		AF2475251D11938A0066D49D /* gtest-main.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474FB1D10BB7F0066D49D /* gtest-main.cc */; };
-		AF2475261D11938A0066D49D /* gtest.h in Sources */ = {isa = PBXBuildFile; fileRef = AF2474FE1D10BB8E0066D49D /* gtest.h */; };
+		AF24752D1D1198C70066D49D /* big_integer_testing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F41D10BB510066D49D /* big_integer_testing.cpp */; };
+		AF24752E1D1198C70066D49D /* big_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F61D10BB5E0066D49D /* big_integer.cpp */; };
+		AF24752F1D1198C70066D49D /* big_integer.h in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F71D10BB5E0066D49D /* big_integer.h */; };
+		AF2475301D1198C70066D49D /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F91D10BB700066D49D /* gtest-all.cc */; };
+		AF2475311D1198C70066D49D /* gtest-main.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474FB1D10BB7F0066D49D /* gtest-main.cc */; };
+		AF2475321D1198C70066D49D /* gtest.h in Sources */ = {isa = PBXBuildFile; fileRef = AF2474FE1D10BB8E0066D49D /* gtest.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -135,12 +135,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF2475211D11938A0066D49D /* big_integer_testing.cpp in Sources */,
-				AF2475221D11938A0066D49D /* big_integer.cpp in Sources */,
-				AF2475231D11938A0066D49D /* big_integer.h in Sources */,
-				AF2475241D11938A0066D49D /* gtest-all.cc in Sources */,
-				AF2475251D11938A0066D49D /* gtest-main.cc in Sources */,
-				AF2475261D11938A0066D49D /* gtest.h in Sources */,
+				AF24752D1D1198C70066D49D /* big_integer_testing.cpp in Sources */,
+				AF24752E1D1198C70066D49D /* big_integer.cpp in Sources */,
+				AF24752F1D1198C70066D49D /* big_integer.h in Sources */,
+				AF2475301D1198C70066D49D /* gtest-all.cc in Sources */,
+				AF2475311D1198C70066D49D /* gtest-main.cc in Sources */,
+				AF2475321D1198C70066D49D /* gtest.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

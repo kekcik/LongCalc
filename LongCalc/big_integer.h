@@ -29,7 +29,7 @@ struct big_integer
     
     big_integer operator+() const;
     big_integer operator-() const;
-    //big_integer operator~() const;
+    big_integer operator~() const;
     
     big_integer& operator++();
     big_integer operator++(int);
