@@ -142,8 +142,6 @@ bool operator>=(big_integer const& a, big_integer const& b)
     return !operator<(a, b);
 }
 
-//?
-
 big_integer div_long_short (big_integer& a, ui b)
 {
     big_integer result (a);
@@ -163,7 +161,7 @@ big_integer& big_integer::operator+=(big_integer const& b)
     
     big_integer result;
     result.data.pop_back();
-    
+
     ll balance = 0, first, second;
     ui length = (data.size() > b.data.size() ? (ui) data.size() : (ui) b.data.size());
     
@@ -198,6 +196,9 @@ big_integer& big_integer::operator+=(big_integer const& b)
         {
             balance = 0;
         }
+        if (flag == false and balance == 0 and i > std::min(data.size(), b.data.size()))
+        {
+        }
     }
     
     result.data.push_back((ui)balance);
@@ -205,7 +206,6 @@ big_integer& big_integer::operator+=(big_integer const& b)
     *this = result;
     return *this;
 }
-
 
 big_integer& big_integer::operator-=(big_integer const& b)
 {
@@ -260,20 +260,17 @@ big_integer big_integer::operator+() const
     return *this;
 }
 
-
 big_integer& big_integer::operator*=(big_integer const& b)
 {
     big_integer result;
     ull mul;
     ui mU, mD;
     int k;
-    
     result.data.resize((int)data.size() + (int)b.data.size());
     result.flag = flag != b.flag ? 1 : 0;
-    
-    for (int i = 0; i < (int)data.size(); ++i)
+    for (int i = 0; i < (int) data.size(); ++i)
     {
-        for (int j = 0; j < (int)b.data.size(); ++j)
+        for (int j = 0; j < (int) b.data.size(); ++j)
         {
             mul = (ull)data[i] * (ull)b.data[j];
             mU  = (ui) (mul >> 32);
@@ -293,7 +290,6 @@ big_integer& big_integer::operator*=(big_integer const& b)
     return *this = result;
 }
 
-
 big_integer operator*(big_integer a, big_integer const& b)
 {
     return a *= b;
@@ -301,8 +297,17 @@ big_integer operator*(big_integer a, big_integer const& b)
 
 big_integer& big_integer::operator/=(big_integer const& b)
 {
+    if (b.data.size() == 1)
+    {
+        bool f = flag ^ b.flag;
+        flag = 0;
+        *this = div_long_short(*this, b.data[0]);
+        flag = f;
+        return *this;
+    }
     big_integer result;
     big_integer up, down;
+    big_integer m(0);
     big_integer mod("4294967296");
     ll left, right, mid = 0;
     int amount = (int)(data.size() - b.data.size());
@@ -324,8 +329,9 @@ big_integer& big_integer::operator/=(big_integer const& b)
         right = 1ll << 32;
         while (right - left > 1)
         {
-            mid = (left + right) / 2 ;
-            if (big_integer((ui)mid) * down > up)
+            mid = (left + right) >> 1;
+            m.data[0] = (ui)mid;
+            if (m * down > up)
             {
                 right = mid;
             }
@@ -334,10 +340,24 @@ big_integer& big_integer::operator/=(big_integer const& b)
                 left = mid;
             }
         }
+/*
+        result.data.push_back(0);
+        for (int i = (int)result.data.size() - 1; i > 0; --i)
+            result.data[i] = result.data[i - 1];
+        result.data[0] = 0;
+*/
         result *= mod;
-        result += big_integer((ui)left);
-        up -= big_integer((ui)left) * down;
+        m.data[0] = (ui)left;
+        result += m;
+        up -= m * down;
+/*
+        up.data.push_back(0);
+        for (int i = (int)up.data.size() - 1; i > 0; --i)
+            up.data[i] = up.data[i - 1];
+        up.data[0] = 0;
+*/
         up *= mod;
+        if (i) m.data[0] = data[i - 1];
         if (i) up += data[i - 1];
     }
     result.flag = flag ^ b.flag;
@@ -347,9 +367,8 @@ big_integer& big_integer::operator/=(big_integer const& b)
 
 big_integer operator/(big_integer a, big_integer const& b)
 {
-    return big_integer(a) /= b;
+    return a /= b;
 }
-
 
 big_integer& big_integer::operator%=(big_integer const& rhs)
 {
@@ -481,7 +500,6 @@ big_integer& big_integer::operator^=(big_integer const& b)
 {
     return binaryOperation(*this, b, 2);
 }
-
 
 big_integer operator&(big_integer a, big_integer const& b)
 {
