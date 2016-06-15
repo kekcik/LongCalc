@@ -272,6 +272,7 @@ TEST(correctness, mul_return_value)
  EXPECT_TRUE(b == -666);
  }
  
+ */
  TEST(correctness, and_)
  {
  big_integer a = 0x55;
@@ -300,7 +301,7 @@ TEST(correctness, mul_return_value)
  (a &= 3) &= 6;
  EXPECT_EQ(a, 2);
  }
- 
+
  TEST(correctness, or_)
  {
  big_integer a = 0x55;
@@ -350,14 +351,14 @@ TEST(correctness, mul_return_value)
  (a ^= 2) ^= 1;
  EXPECT_EQ(a, 2);
  }
- 
+ /*
  TEST(correctness, not_)
  {
  big_integer a = 0xaa;
  
  EXPECT_TRUE(~a == (-a - 1));
  }
- 
+ */
  TEST(correctness, shl_)
  {
  big_integer a = 23;
@@ -403,7 +404,6 @@ TEST(correctness, mul_return_value)
  (a >>= 2) >>= 1;
  EXPECT_EQ(a, 8);
  }
- */
 TEST(correctness, add_long)
 {
     big_integer a("10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");

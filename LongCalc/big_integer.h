@@ -20,14 +20,14 @@ struct big_integer
     big_integer& operator/=(big_integer const& rhs);
     big_integer& operator%=(big_integer const& rhs);
     
-    //big_integer& operator&=(big_integer const& rhs);
-    //big_integer& operator|=(big_integer const& rhs);
-    //big_integer& operator^=(big_integer const& rhs);
+    big_integer& operator&=(big_integer const& rhs);
+    big_integer& operator|=(big_integer const& rhs);
+    big_integer& operator^=(big_integer const& rhs);
     
-    //big_integer& operator<<=(int rhs);
-    //big_integer& operator>>=(int rhs);
+    big_integer& operator<<=(int rhs);
+    big_integer& operator>>=(int rhs);
     
-    //big_integer operator+() const;
+    big_integer operator+() const;
     big_integer operator-() const;
     //big_integer operator~() const;
     
@@ -46,6 +46,7 @@ struct big_integer
     
     friend std::string to_string(big_integer const& a);
 private:
+    friend big_integer& binaryOperation (big_integer& a, big_integer const& b, int type);
     friend big_integer div2(big_integer a);
     friend big_integer& resize(big_integer& a);
     friend big_integer div_long_short (big_integer& first, unsigned int b);
@@ -59,12 +60,12 @@ big_integer operator*(big_integer a, big_integer const& b);
 big_integer operator/(big_integer a, big_integer const& b);
 big_integer operator%(big_integer a, big_integer const& b);
 
-//big_integer operator&(big_integer a, big_integer const& b);
-//big_integer operator|(big_integer a, big_integer const& b);
-//big_integer operator^(big_integer a, big_integer const& b);
+big_integer operator&(big_integer a, big_integer const& b);
+big_integer operator|(big_integer a, big_integer const& b);
+big_integer operator^(big_integer a, big_integer const& b);
 
-//big_integer operator<<(big_integer a, int b);
-//big_integer operator>>(big_integer a, int b);
+big_integer operator<<(big_integer a, int b);
+big_integer operator>>(big_integer a, int b);
 
 bool operator==(big_integer const& a, big_integer const& b);
 bool operator!=(big_integer const& a, big_integer const& b);

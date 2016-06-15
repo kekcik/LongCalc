@@ -184,15 +184,14 @@ big_integer& big_integer::operator+=(big_integer const& b)
         {
             balance = -1;
         }
+        else if (first + second + balance >= mod)
+        {
+            balance = 1;
+        }
         else
-            if (first + second + balance >= mod)
-            {
-                balance = 1;
-            }
-            else
-            {
-                balance = 0;
-            }
+        {
+            balance = 0;
+        }
     }
     
     result.data.push_back((ui)balance);
@@ -250,6 +249,11 @@ big_integer big_integer::operator-() const
     if (*this == big_integer(0)) r = big_integer(0);
     return r;
 }
+big_integer big_integer::operator+() const
+{
+    return *this;
+}
+
 
 big_integer& big_integer::operator*=(big_integer const& b)
 {
@@ -280,8 +284,7 @@ big_integer& big_integer::operator*=(big_integer const& b)
         }
     }
     resize(result);
-    *this = result;
-    return *this;
+    return *this = result;
 }
 
 
@@ -289,22 +292,6 @@ big_integer operator*(big_integer a, big_integer const& b)
 {
     return a *= b;
 }
-
-big_integer div2(big_integer a)
-{
-    ull b, c = 0;
-    for (int i = (int)a.data.size() - 1; i >= 0; --i)
-    {
-        b = a.data[i] % 2;
-        a.data[i] >>= 1;
-        a.data[i] += (2*p) * c;
-        c = b;
-    }
-    resize(a);
-    return a;
-}
-
-
 
 big_integer& big_integer::operator/=(big_integer const& rhs)
 {
@@ -330,128 +317,150 @@ big_integer operator%(big_integer a, big_integer const& b)
     return a %= b;
 }
 
+big_integer& big_integer::operator<<=(int a)
+{
+    ull current, next = 0;
+    int aShort = a % 32;
+    int aLong  = a / 32;
+    data.resize(aLong + data.size());
+    
+    //left short shift
+    for (int i = 0; i < (int) data.size() - aLong; ++i)
+    {
+        current = (data[i] >> ((32 - aShort)) << (32 - aShort));
+        data[i] <<= aShort;
+        data[i] += (1ll << (32 - aShort)) * next;
+        next = current;
+    }
+    
+    //left long shift
+    for (int i = (int)data.size() - 1; i >= 0; --i)
+        data[i] = i - aLong >= 0 ? data[i - aLong] : 0;
+    
+    return *this;
+}
+
+big_integer& big_integer::operator>>=(int a)
+{
+    ull current, previous = 0;
+    int aShort = a % 32;
+    int aLong  = a / 32;
+    bool inv = flag;
+    
+    if (flag)
+    {
+        flag = 0;
+        *this -= 1;
+    }
+    
+    //right short shift
+    for (int i = (int) data.size() - 1; i >= 0; --i)
+    {
+        current = (data[i] << ((32 - aShort)) >> (32 - aShort));
+        data[i] >>= aShort;
+        data[i] += (1ll << (32 - aShort)) * previous;
+        previous = current;
+    }
+    
+    //right long shift
+    for (int i = 0; i < (int) data.size(); ++i)
+        data[i] = i < (int) data.size() - aLong ? data[i + aLong] : 0;
+    
+    if (inv)
+    {
+        *this += 1;
+        flag = 1;
+    }
+    return resize(*this);
+}
+
+
+big_integer operator<<(big_integer a, int b)
+{
+    return a <<= b;
+}
+
+big_integer operator>>(big_integer a, int b)
+{
+    return a >>= b;
+}
+
+// pre
+// type == 1 it's and-operation
+// type == 2 it's or-operation
+// type == 3 it's xor-operation
+big_integer& binaryOperation (big_integer& a, big_integer const& b, int type)
+{
+    bool invA = a.flag;
+    bool invB = b.flag;
+    a.flag = false;
+    int length = (int) std::max(a.data.size(), b.data.size());
+    ui first =  invA ? ~(a.data[0] - 1) : a.data[0];
+    ui second = invB ? ~(b.data[0] - 1) : b.data[0];
+    a.data.resize(length);
+    for (int i = 0; i < length; ++i)
+    {
+        if (type == 0) a.data[i] = first & second;
+        if (type == 1) a.data[i] = first | second;
+        if (type == 2) a.data[i] = first ^ second;
+        first = i + 1 < a.data.size() ? a.data[i + 1] : 0;
+        if (invA) first = ~first;
+        second = i + 1 < b.data.size() ? b.data[i + 1] : 0;
+        if (invB) second = ~second;
+    }
+    if (a.data[a.data.size() - 1] >> 1ll*31)
+    {
+        a -= 1;
+        a.flag = true;
+        for (int i = 0; i < (int) a.data.size(); ++i)
+        {
+            a.data[i] = ~a.data[i];
+        }
+    }
+    return resize(a);
+}
+
+big_integer& big_integer::operator&=(big_integer const& b)
+{
+    return binaryOperation(*this, b, 0);
+}
+
+big_integer& big_integer::operator|=(big_integer const& b)
+{
+    return binaryOperation(*this, b, 1);
+}
+
+big_integer& big_integer::operator^=(big_integer const& b)
+{
+    return binaryOperation(*this, b, 2);
+}
+
+big_integer operator&(big_integer a, big_integer const& b)
+{
+    return a &= b;
+}
+
+big_integer operator|(big_integer a, big_integer const& b)
+{
+    return a |= b;
+}
+
+big_integer operator^(big_integer a, big_integer const& b)
+{
+    return a ^= b;
+}
 /*
- big_integer::big_integer(std::string const& str)
- {
- if (mpz_init_set_str(mpz, str.c_str(), 10))
- {
- mpz_clear(mpz);
- throw std::runtime_error("invalid string");
- }
- }
- 
- 
- 
  big_integer& big_integer::operator%=(big_integer const& rhs)
  {
  mpz_tdiv_r(mpz, mpz, rhs.mpz);
  return *this;
  }
  
- big_integer& big_integer::operator&=(big_integer const& rhs)
- {
- mpz_and(mpz, mpz, rhs.mpz);
- return *this;
- }
- 
- big_integer& big_integer::operator|=(big_integer const& rhs)
- {
- mpz_ior(mpz, mpz, rhs.mpz);
- return *this;
- }
- 
- big_integer& big_integer::operator^=(big_integer const& rhs)
- {
- mpz_xor(mpz, mpz, rhs.mpz);
- return *this;
- }
- 
- big_integer& big_integer::operator<<=(int rhs)
- {
- mpz_mul_2exp(mpz, mpz, rhs);
- return *this;
- }
- 
- big_integer& big_integer::operator>>=(int rhs)
- {
- mpz_div_2exp(mpz, mpz, rhs);
- return *this;
- }
  
  big_integer big_integer::operator~() const
  {
  big_integer r;
  mpz_com(r.mpz, mpz);
  return r;
- }
- 
- big_integer& big_integer::operator++()
- {
- mpz_add_ui(mpz, mpz, 1);
- return *this;
- }
- 
- big_integer big_integer::operator++(int)
- {
- big_integer r = *this;
- ++*this;
- return r;
- }
- 
- big_integer& big_integer::operator--()
- {
- mpz_sub_ui(mpz, mpz, 1);
- return *this;
- }
- 
- big_integer big_integer::operator--(int)
- {
- big_integer r = *this;
- --*this;
- return r;
- }
- 
- big_integer operator+(big_integer a, big_integer const& b)
- {
- return a += b;
- }
- 
- big_integer operator-(big_integer a, big_integer const& b)
- {
- return a -= b;
- }
- 
- 
- 
- 
- 
- big_integer operator%(big_integer a, big_integer const& b)
- {
- return a %= b;
- }
- 
- big_integer operator&(big_integer a, big_integer const& b)
- {
- return a &= b;
- }
- 
- big_integer operator|(big_integer a, big_integer const& b)
- {
- return a |= b;
- }
- 
- big_integer operator^(big_integer a, big_integer const& b)
- {
- return a ^= b;
- }
- 
- big_integer operator<<(big_integer a, int b)
- {
- return a <<= b;
- }
- 
- big_integer operator>>(big_integer a, int b)
- {
- return a >>= b;
  }
  */
