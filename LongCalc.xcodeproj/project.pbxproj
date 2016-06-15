@@ -7,12 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AF24752D1D1198C70066D49D /* big_integer_testing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F41D10BB510066D49D /* big_integer_testing.cpp */; };
-		AF24752E1D1198C70066D49D /* big_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F61D10BB5E0066D49D /* big_integer.cpp */; };
-		AF24752F1D1198C70066D49D /* big_integer.h in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F71D10BB5E0066D49D /* big_integer.h */; };
-		AF2475301D1198C70066D49D /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F91D10BB700066D49D /* gtest-all.cc */; };
-		AF2475311D1198C70066D49D /* gtest-main.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474FB1D10BB7F0066D49D /* gtest-main.cc */; };
-		AF2475321D1198C70066D49D /* gtest.h in Sources */ = {isa = PBXBuildFile; fileRef = AF2474FE1D10BB8E0066D49D /* gtest.h */; };
+		AF2475471D11B37A0066D49D /* mainForInf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2475451D11B32C0066D49D /* mainForInf.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +31,7 @@
 		AF2474F91D10BB700066D49D /* gtest-all.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "gtest-all.cc"; sourceTree = "<group>"; };
 		AF2474FB1D10BB7F0066D49D /* gtest-main.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "gtest-main.cc"; sourceTree = "<group>"; };
 		AF2474FE1D10BB8E0066D49D /* gtest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gtest.h; sourceTree = "<group>"; };
+		AF2475451D11B32C0066D49D /* mainForInf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mainForInf.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +71,7 @@
 				AF2474F91D10BB700066D49D /* gtest-all.cc */,
 				AF2474FB1D10BB7F0066D49D /* gtest-main.cc */,
 				AF2474FE1D10BB8E0066D49D /* gtest.h */,
+				AF2475451D11B32C0066D49D /* mainForInf.cpp */,
 			);
 			path = LongCalc;
 			sourceTree = "<group>";
@@ -135,12 +132,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF24752D1D1198C70066D49D /* big_integer_testing.cpp in Sources */,
-				AF24752E1D1198C70066D49D /* big_integer.cpp in Sources */,
-				AF24752F1D1198C70066D49D /* big_integer.h in Sources */,
-				AF2475301D1198C70066D49D /* gtest-all.cc in Sources */,
-				AF2475311D1198C70066D49D /* gtest-main.cc in Sources */,
-				AF2475321D1198C70066D49D /* gtest.h in Sources */,
+				AF2475471D11B37A0066D49D /* mainForInf.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -196,7 +196,7 @@ TEST(correctness, mul_return_value)
     EXPECT_EQ(a, 20);
 }
 
-/*
+
  TEST(correctness, div_)
  {
  big_integer a = 20;
@@ -272,7 +272,7 @@ TEST(correctness, mul_return_value)
  EXPECT_TRUE(b == -666);
  }
  
- */
+ 
  TEST(correctness, and_)
  {
  big_integer a = 0x55;
@@ -351,7 +351,7 @@ TEST(correctness, mul_return_value)
  (a ^= 2) ^= 1;
  EXPECT_EQ(a, 2);
  }
- 
+
  TEST(correctness, not_)
  {
  big_integer a = 0xaa;
@@ -537,8 +537,8 @@ TEST(correctness, string_conv)
 
 namespace
 {
-    unsigned const number_of_iterations = 1;
-    size_t const number_of_multipliers = 1;
+    unsigned const number_of_iterations = 1000;
+    size_t const number_of_multipliers = 10;
     
     int myrand()
     {

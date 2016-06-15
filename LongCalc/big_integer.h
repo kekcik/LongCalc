@@ -9,6 +9,7 @@ struct big_integer
     big_integer();
     big_integer(big_integer const& other);
     big_integer(int a);
+    big_integer(unsigned int a);
     //explicit big_integer(std::string const& str);
     //~big_integer();
     
@@ -19,7 +20,6 @@ struct big_integer
     big_integer& operator*=(big_integer const& rhs);
     big_integer& operator/=(big_integer const& rhs);
     big_integer& operator%=(big_integer const& rhs);
-    
     big_integer& operator&=(big_integer const& rhs);
     big_integer& operator|=(big_integer const& rhs);
     big_integer& operator^=(big_integer const& rhs);
@@ -46,6 +46,7 @@ struct big_integer
     
     friend std::string to_string(big_integer const& a);
 private:
+    
     friend big_integer& binaryOperation (big_integer& a, big_integer const& b, int type);
     friend big_integer div2(big_integer a);
     friend big_integer& resize(big_integer& a);

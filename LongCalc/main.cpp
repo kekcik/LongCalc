@@ -11,18 +11,13 @@
 #include "big_integer.h"
 using namespace std;
 int main () {
-    int kol = 0;
-    int p = 0;
-    int a = -5;
-    int b = 0xaa;
-    big_integer aa(a);
-    big_integer bb(b);
-    for (int i = -65; i < 65; i++)
-    {
-        kol++;
-        if (~i == ~big_integer(i)) p++;
-    }
+    big_integer a = 23;
+    big_integer b = -5;
+    big_integer c = -23;
+    big_integer d = 5;
+    cout<<(a / b)<<endl;// == -4
+    cout<<(c / d)<<endl;// == -4
+    cout<<(a % b)<<endl;// == 3
+    cout<<(c % d)<<endl;// == -3
     
-    cout << kol << " TOTAL TESTS\n";
-    cout <<  p  << " PASSED\n";
 }
