@@ -488,7 +488,7 @@ TEST(correctness, mul_long_pow2)
     EXPECT_EQ(a * a, b);
     EXPECT_EQ(b * b, c);
 }
-/*
+
  TEST(correctness, div_long)
  {
  big_integer a("10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
@@ -524,7 +524,7 @@ TEST(correctness, mul_long_pow2)
  EXPECT_EQ(-a, c);
  EXPECT_EQ(a, -c);
  }
- */
+ 
 TEST(correctness, string_conv)
 {
     EXPECT_EQ(to_string(big_integer("100")), "100");
@@ -534,11 +534,37 @@ TEST(correctness, string_conv)
     EXPECT_EQ(to_string(big_integer("-1000000000000000")), "-1000000000000000");
 }
 
+TEST(correctness, ctor_limits)
+{
+    big_integer a = std::numeric_limits<int>::min();
+    big_integer b = std::numeric_limits<int>::max();
+    EXPECT_EQ(a + b, -1);
+}
+TEST(correctness, div_int_min)
+{
+        big_integer a = std::numeric_limits<int>::min();
+        EXPECT_TRUE((a / a) == (a / std::numeric_limits<int>::min()));
+    }
 
+TEST(correctness, shr_31)
+{
+        big_integer a = 65536;
+    
+        EXPECT_EQ((a*a) >> 31, 2);
+    }
+
+TEST(correctness, div_int_min_2)
+{
+        big_integer a = std::numeric_limits<int>::min();
+        big_integer b = -1;
+        big_integer c = a / b;
+        EXPECT_TRUE(c == (a / -1));
+        EXPECT_TRUE((c - std::numeric_limits<int>::max()) == 1);
+}
 namespace
 {
-    unsigned const number_of_iterations = 1000;
-    size_t const number_of_multipliers = 10;
+    unsigned const number_of_iterations = 10;
+    size_t const number_of_multipliers = 1000;
     
     int myrand()
     {

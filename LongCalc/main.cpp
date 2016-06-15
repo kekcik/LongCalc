@@ -11,13 +11,10 @@
 #include "big_integer.h"
 using namespace std;
 int main () {
-    big_integer a = 23;
-    big_integer b = -5;
-    big_integer c = -23;
-    big_integer d = 5;
-    cout<<(a / b)<<endl;// == -4
-    cout<<(c / d)<<endl;// == -4
-    cout<<(a % b)<<endl;// == 3
-    cout<<(c % d)<<endl;// == -3
-    
+    string s1, s2;
+    cin >> s1 >> s2;
+    big_integer a1(s1);
+    big_integer a2(s2);
+    big_integer c = a1 / a2;
+    cout << c <<endl;
 }

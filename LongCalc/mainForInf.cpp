@@ -79,7 +79,6 @@ std::string to_string(big_integer const& a);
 std::ostream& operator<<(std::ostream& s, big_integer const& a);
 
 #endif // BIG_INTEGER_H
-
 #include <iostream>
 #include <cstring>
 #include <stdexcept>
@@ -164,6 +163,7 @@ big_integer::big_integer(int a)
 
 big_integer::big_integer(ui a)
 {
+    flag = false;
     data.push_back(a);
 }
 
@@ -370,7 +370,7 @@ big_integer& big_integer::operator*=(big_integer const& b)
         }
     }
     resize(result);
-    return *this = result;
+    return  *this =  result;
 }
 
 
@@ -392,12 +392,13 @@ big_integer& big_integer::operator/=(big_integer const& b)
         return *this;
     }
     up.data.resize(b.data.size());
+    down.data.resize(b.data.size());
     for (int i = 0; i < b.data.size(); ++i)
     {
         up.data[i] = data[i + amount];
         down.data[i] = b.data[i];
     }
-    for (int i = 0; i <= amount; ++i)
+    for (int i = amount; i >= 0; --i)
     {
         left = 0;
         right = 1ll << 32;
@@ -415,6 +416,9 @@ big_integer& big_integer::operator/=(big_integer const& b)
         }
         result *= mod;
         result += big_integer((ui)left);
+        up -= big_integer((ui)left) * down;
+        up *= mod;
+        if (i) up += data[i - 1];
     }
     result.flag = flag ^ b.flag;
     *this = result;
@@ -429,7 +433,6 @@ big_integer operator/(big_integer a, big_integer const& b)
 
 big_integer& big_integer::operator%=(big_integer const& rhs)
 {
-    
     big_integer res = *this - rhs * (*this / rhs);
     *this = res;
     return *this;
@@ -558,6 +561,7 @@ big_integer& big_integer::operator^=(big_integer const& b)
     return binaryOperation(*this, b, 2);
 }
 
+
 big_integer operator&(big_integer a, big_integer const& b)
 {
     return a &= b;
@@ -583,6 +587,7 @@ using namespace std;
 int main () {
     string s1, s2;
     cin >> s1 >> s2;
-    cout<< (big_integer(s1) * big_integer(s2))<<endl;
-    
-}
+    big_integer a1(s1);
+    big_integer a2(s2);
+    big_integer c = a1 / a2;
+    cout << c <<endl;}
