@@ -60,10 +60,14 @@ big_integer::big_integer()
 
 big_integer::big_integer(std::string str)
 {
+    big_integer b10(10);
+    big_integer b0(0);
+
     for (int i = str[0] == '-' ? 1 : 0; i < str.size(); ++i)
     {
-        *this *= big_integer(10);
-        *this += big_integer(str[i] - 48);
+        *this *= b10;
+        b0.data[0] = str[i] - 48;
+        *this += b0;
     }
     flag = (str[0] == '-' ? true : false);
     resize(*this);
@@ -77,8 +81,8 @@ big_integer::big_integer(big_integer const& other)
 
 big_integer::big_integer(int a)
 {
-    this -> flag = a < 0 ? 1 : 0;
-    data.push_back(a < 0 ? -a : a);
+    flag = a < 0;
+    data.push_back(flag ? -a : a);
 }
 
 big_integer::big_integer(ui a)
@@ -298,8 +302,6 @@ big_integer& big_integer::operator/=(big_integer const& b)
 {
     if (b.data.size() == 1)
     {
-       // bool f = flag ^ b.flag;
-        //flag = 0;
         *this = div_long_short(*this, b.data[0]);
         flag = flag ^ b.flag;
         return *this;
@@ -313,7 +315,8 @@ big_integer& big_integer::operator/=(big_integer const& b)
     big_integer result;
     big_integer up, down;
     big_integer m(0);
-    big_integer mod("4294967296");
+    big_integer mod(0);
+    mod.data.push_back(1);
     
     ll left, right, mid = 0;
     

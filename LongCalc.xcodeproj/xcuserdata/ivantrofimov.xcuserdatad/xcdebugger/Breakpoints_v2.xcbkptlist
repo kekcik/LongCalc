@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LongCalc/big_integer.cpp"
-            timestampString = "487725535.667021"
+            timestampString = "487726216.96395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "313"
-            endingLineNumber = "313"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
             landmarkName = "big_integer::operator/=(big_integer const&amp; b)"
             landmarkType = "5">
          </BreakpointContent>
