@@ -18,6 +18,7 @@ big_integer& resize (big_integer & a)
 }
 std::string to_string(big_integer const& a)
 {
+    
     std::string res = "";
     big_integer aa (a);
     big_integer bb (0);
@@ -59,7 +60,6 @@ big_integer::big_integer()
 
 big_integer::big_integer(std::string str)
 {
-    
     for (int i = str[0] == '-' ? 1 : 0; i < str.size(); ++i)
     {
         *this *= big_integer(10);
@@ -158,32 +158,31 @@ big_integer div_long_short (big_integer& a, ui b)
 
 big_integer& big_integer::operator+=(big_integer const& b)
 {
-    
-    big_integer result;
-    result.data.pop_back();
-
+    if (b.data.size() > data.size()) data.resize(b.data.size());
+    bool f = false;
     ll balance = 0, first, second;
-    ui length = (data.size() > b.data.size() ? (ui) data.size() : (ui) b.data.size());
+    int length = (data.size() > b.data.size() ? (int) data.size() : (int) b.data.size());
     
     if (flag == b.flag)
     {
-        result.flag = flag;
+        f = flag;
     }
-    else if ((*this < -b and !flag) or (-*this > b and flag))
+    else
     {
-        result.flag = true;
+        if ((*this < -b and !flag) or (-*this > b and flag))
+        {
+            f = true;
+        }
     }
-    
-    
     for (int i = 0; i < length; ++i)
     {
         first = i < data.size() ? data[i] : 0;
-        if (result.flag ^ flag) first = -first;
+        if (f ^ flag) first = -first;
         
         second = i < b.data.size() ? b.data[i] : 0;
-        if (result.flag ^ b.flag) second = -second;
+        if (f ^ b.flag) second = -second;
         
-        result.data.push_back((ui)((ll)mod + first + second + balance));
+        data[i] = ((ui)(first + second + balance));
         if (first + second + balance < 0)
         {
             balance = -1;
@@ -196,14 +195,14 @@ big_integer& big_integer::operator+=(big_integer const& b)
         {
             balance = 0;
         }
-        if (flag == false and balance == 0 and i > std::min(data.size(), b.data.size()))
+        if (balance == 0 and i > std::min(data.size(), b.data.size()))
         {
+            break;
         }
     }
-    
-    result.data.push_back((ui)balance);
-    resize(result);
-    *this = result;
+    flag = f;
+    data.push_back((ui)balance);
+    resize(*this);
     return *this;
 }
 
@@ -299,23 +298,25 @@ big_integer& big_integer::operator/=(big_integer const& b)
 {
     if (b.data.size() == 1)
     {
-        bool f = flag ^ b.flag;
-        flag = 0;
+       // bool f = flag ^ b.flag;
+        //flag = 0;
         *this = div_long_short(*this, b.data[0]);
-        flag = f;
+        flag = flag ^ b.flag;
         return *this;
     }
-    big_integer result;
-    big_integer up, down;
-    big_integer m(0);
-    big_integer mod("4294967296");
-    ll left, right, mid = 0;
     int amount = (int)(data.size() - b.data.size());
     if (amount < 0)
     {
         *this = 0;
         return *this;
     }
+    big_integer result;
+    big_integer up, down;
+    big_integer m(0);
+    big_integer mod("4294967296");
+    
+    ll left, right, mid = 0;
+    
     up.data.resize(b.data.size());
     down.data.resize(b.data.size());
     for (int i = 0; i < b.data.size(); ++i)
@@ -340,25 +341,26 @@ big_integer& big_integer::operator/=(big_integer const& b)
                 left = mid;
             }
         }
-/*
+
         result.data.push_back(0);
         for (int i = (int)result.data.size() - 1; i > 0; --i)
             result.data[i] = result.data[i - 1];
         result.data[0] = 0;
-*/
-        result *= mod;
+
+        //result *= mod;
+        
         m.data[0] = (ui)left;
         result += m;
         up -= m * down;
-/*
+
         up.data.push_back(0);
         for (int i = (int)up.data.size() - 1; i > 0; --i)
             up.data[i] = up.data[i - 1];
         up.data[0] = 0;
-*/
-        up *= mod;
+
+        //up *= mod;
         if (i) m.data[0] = data[i - 1];
-        if (i) up += data[i - 1];
+        up += m;
     }
     result.flag = flag ^ b.flag;
     *this = result;
