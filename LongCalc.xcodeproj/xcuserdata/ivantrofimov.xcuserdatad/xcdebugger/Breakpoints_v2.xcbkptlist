@@ -10,55 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LongCalc/big_integer.cpp"
-            timestampString = "487777355.229835"
+            timestampString = "487779724.230479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "533"
-            endingLineNumber = "533"
+            startingLineNumber = "436"
+            endingLineNumber = "436"
             landmarkName = "big_integer::operator&gt;&gt;=(int a)"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LongCalc/big_integer.cpp"
-            timestampString = "487777355.229835"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "431"
-            endingLineNumber = "431">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LongCalc/big_integer.cpp"
-            timestampString = "487777355.229835"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "484"
-            endingLineNumber = "484">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LongCalc/big_integer.cpp"
-            timestampString = "487777355.229835"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "473"
-            endingLineNumber = "473">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -84,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LongCalc/big_integer.cpp"
-            timestampString = "487768742.44267"
+            timestampString = "487778657.107746"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
+            startingLineNumber = "301"
+            endingLineNumber = "301"
             landmarkName = "big_integer::operator/=(big_integer const&amp; b)"
             landmarkType = "5">
          </BreakpointContent>
@@ -100,27 +58,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LongCalc/big_integer.cpp"
-            timestampString = "487777355.229835"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "341"
-            endingLineNumber = "341"
-            landmarkName = "big_integer::operator/=(big_integer const&amp; b)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LongCalc/big_integer.cpp"
-            timestampString = "487777355.229835"
+            timestampString = "487778940.457582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "342"
             endingLineNumber = "342"
+            landmarkName = "big_integer::operator/=(big_integer const&amp; b)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LongCalc/big_integer.cpp"
+            timestampString = "487778940.457582"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "343"
+            endingLineNumber = "343"
             landmarkName = "big_integer::operator/=(big_integer const&amp; b)"
             landmarkType = "5">
          </BreakpointContent>
@@ -148,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LongCalc/big_integer.cpp"
-            timestampString = "487777355.229835"
+            timestampString = "487779724.230479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "411"
-            endingLineNumber = "411"
+            startingLineNumber = "387"
+            endingLineNumber = "387"
             landmarkName = "big_integer::operator/=(big_integer const&amp; b)"
             landmarkType = "5">
          </BreakpointContent>
@@ -164,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LongCalc/big_integer.cpp"
-            timestampString = "487777355.229835"
+            timestampString = "487779724.230479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "409"
-            endingLineNumber = "409"
+            startingLineNumber = "385"
+            endingLineNumber = "385"
             landmarkName = "big_integer::operator/=(big_integer const&amp; b)"
             landmarkType = "5">
          </BreakpointContent>
@@ -180,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LongCalc/big_integer.cpp"
-            timestampString = "487777355.229835"
+            timestampString = "487779724.230479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373"
+            startingLineNumber = "365"
+            endingLineNumber = "365"
             landmarkName = "big_integer::operator/=(big_integer const&amp; b)"
             landmarkType = "5">
          </BreakpointContent>

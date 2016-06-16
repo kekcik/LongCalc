@@ -295,6 +295,7 @@ big_integer operator*(big_integer a, big_integer const& b)
 {
     return a *= b;
 }
+
 big_integer& big_integer::operator/=(big_integer const& b)
 {
     if (data.size() < b.data.size())
@@ -342,9 +343,9 @@ big_integer& big_integer::operator/=(big_integer const& b)
         while (r < mod)
         {
             temp2 = (ull) bb.data[n - 2] * qGuessm;
-            temp1 = (ull) r * (ull)mod + (ull)u.data[uJ - 2];
+            temp1 = r * mod + (ull) u.data[uJ - 2];
             
-            if ((temp2 > temp1)||(qGuessm == mod))
+            if ((temp2 > temp1) || (qGuessm == mod))
             {
                 --qGuessm;
                 r += bb.data[n - 1];
@@ -358,29 +359,12 @@ big_integer& big_integer::operator/=(big_integer const& b)
             carry = temp1 >> 32;
             temp1 = (ui) temp1;
             temp2 = (ull)u.data[i + vJ] - temp1 - borrow;
-            
-            if ((ull)u.data[i + vJ]  < temp1 + borrow)
-            {
-                u.data[i + vJ] = (ui)temp2;
-                borrow = 1;
-            }
-            else
-            {
-                u.data[i + vJ] = (ui)temp2;
-                borrow = 0;
-            }
+            borrow = (ull)u.data[i + vJ]  < temp1 + borrow ? 1 : 0;
+            u.data[i + vJ] = (ui)temp2;
         }
         temp2 = (ull)u.data[i + vJ] - carry - borrow;
-        if ((ull)u.data[i + vJ]  < carry + borrow)
-        {
-            u.data[i + vJ] = (ui)temp2;
-            borrow = 1;
-        }
-        else
-        {
-            u.data[i + vJ] = (ui)temp2;
-            borrow = 0;
-        }
+        borrow = (ull)u.data[i + vJ]  < carry + borrow ? 1 : 0;
+        u.data[i + vJ] = (ui)temp2;
         
         if (borrow == 0)
         {
@@ -392,17 +376,9 @@ big_integer& big_integer::operator/=(big_integer const& b)
             carry = 0;
             for (i = 0; i < n; ++i)
             {
-                temp = (ull)u.data[i+vJ] + (ull)bb.data[i] + (ull)carry;
-                if (temp >= mod)
-                {
-                    u.data[i + vJ] = (ui)temp;
-                    carry = 1;
-                }
-                else
-                {
-                    u.data[i + vJ] = (ui)temp;
-                    carry = 0;
-                }
+                temp = (ull)u.data[i+vJ] + (ull)bb.data[i] + carry;
+                carry = temp >= mod ? 1 : 0;
+                u.data[i + vJ] = (ui)temp;
             }
             u.data[i + vJ] += carry - mod;
         }
@@ -413,79 +389,6 @@ big_integer& big_integer::operator/=(big_integer const& b)
     flag = f ^ b.flag;
     return *this;
 }
-/*
-big_integer& big_integer::operator/=(big_integer const& b)
-{
-    if (b.data.size() == 1)
-    {
-        *this = div_long_short(*this, b.data[0]);
-        flag = flag ^ b.flag;
-        return *this;
-    }
-    int amount = (int)(data.size() - b.data.size());
-    if (amount < 0)
-    {
-        *this = 0;
-        return *this;
-    }
-    big_integer result;
-    big_integer up, down;
-    big_integer m(0);
-    big_integer mod(0);
-    mod.data.push_back(1);
-    
-    ll left, right, mid = 0;
-    
-    up.data.resize(b.data.size());
-    down.data.resize(b.data.size());
-    for (int i = 0; i < b.data.size(); ++i)
-    {
-        up.data[i] = data[i + amount];
-        down.data[i] = b.data[i];
-    }
-    for (int i = amount; i >= 0; --i)
-    {
-        left = 0;
-        right = 1ll << 32;
-        while (right - left > 1)
-        {
-            mid = (left + right) >> 1;
-            m.data[0] = (ui)mid;
-            if (m * down > up)
-            {
-                right = mid;
-            }
-            else
-            {
-                left = mid;
-            }
-        }
-
-        result.data.push_back(0);
-        for (int i = (int)result.data.size() - 1; i > 0; --i)
-            result.data[i] = result.data[i - 1];
-        result.data[0] = 0;
-
-        //result *= mod;
-        
-        m.data[0] = (ui)left;
-        result += m;
-        up -= m * down;
-
-        up.data.push_back(0);
-        for (int i = (int)up.data.size() - 1; i > 0; --i)
-            up.data[i] = up.data[i - 1];
-        up.data[0] = 0;
-
-        //up *= mod;
-        if (i) m.data[0] = data[i - 1];
-        up += m;
-    }
-    result.flag = flag ^ b.flag;
-    *this = result;
-    return *this;
-}
-*/
 
 big_integer operator/(big_integer a, big_integer const& b)
 {
@@ -577,6 +480,7 @@ big_integer operator>>(big_integer a, int b)
 // type == 1 it's and-operation
 // type == 2 it's or-operation
 // type == 3 it's xor-operation
+
 big_integer& binaryOperation (big_integer& a, big_integer const& b, int type)
 {
     bool invA = a.flag;
