@@ -12,9 +12,10 @@
 using namespace std;
 int main () {
     string s1, s2;
-    cin >> s1 >> s2;
-    big_integer a1(s1);
-    big_integer a2(s2);
+  //  cin >> s1 >> s2;
+    big_integer a1("100000000000000000000000000000000000000000");
+    big_integer a2("100000000000000000000000000");
+    big_integer ans                         ("1000000000000000");
     big_integer c = a1 / a2;
     cout << c <<endl;
 }

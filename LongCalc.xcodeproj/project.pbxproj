@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AF2475671D11DD100066D49D /* big_integer_testing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F41D10BB510066D49D /* big_integer_testing.cpp */; };
-		AF2475681D11DD100066D49D /* big_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F61D10BB5E0066D49D /* big_integer.cpp */; };
-		AF2475691D11DD100066D49D /* big_integer.h in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F71D10BB5E0066D49D /* big_integer.h */; };
-		AF24756A1D11DD100066D49D /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F91D10BB700066D49D /* gtest-all.cc */; };
-		AF24756B1D11DD100066D49D /* gtest-main.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474FB1D10BB7F0066D49D /* gtest-main.cc */; };
-		AF24756C1D11DD100066D49D /* gtest.h in Sources */ = {isa = PBXBuildFile; fileRef = AF2474FE1D10BB8E0066D49D /* gtest.h */; };
+		AFC99D4E1D12E1F50074D77D /* big_integer_testing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F41D10BB510066D49D /* big_integer_testing.cpp */; };
+		AFC99D4F1D12E1F50074D77D /* big_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F61D10BB5E0066D49D /* big_integer.cpp */; };
+		AFC99D501D12E1F50074D77D /* big_integer.h in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F71D10BB5E0066D49D /* big_integer.h */; };
+		AFC99D511D12E1F50074D77D /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F91D10BB700066D49D /* gtest-all.cc */; };
+		AFC99D521D12E1F50074D77D /* gtest-main.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474FB1D10BB7F0066D49D /* gtest-main.cc */; };
+		AFC99D531D12E1F50074D77D /* gtest.h in Sources */ = {isa = PBXBuildFile; fileRef = AF2474FE1D10BB8E0066D49D /* gtest.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -137,12 +137,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF2475671D11DD100066D49D /* big_integer_testing.cpp in Sources */,
-				AF2475681D11DD100066D49D /* big_integer.cpp in Sources */,
-				AF2475691D11DD100066D49D /* big_integer.h in Sources */,
-				AF24756A1D11DD100066D49D /* gtest-all.cc in Sources */,
-				AF24756B1D11DD100066D49D /* gtest-main.cc in Sources */,
-				AF24756C1D11DD100066D49D /* gtest.h in Sources */,
+				AFC99D4E1D12E1F50074D77D /* big_integer_testing.cpp in Sources */,
+				AFC99D4F1D12E1F50074D77D /* big_integer.cpp in Sources */,
+				AFC99D501D12E1F50074D77D /* big_integer.h in Sources */,
+				AFC99D511D12E1F50074D77D /* gtest-all.cc in Sources */,
+				AFC99D521D12E1F50074D77D /* gtest-main.cc in Sources */,
+				AFC99D531D12E1F50074D77D /* gtest.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +269,7 @@
 				AF2474F31D10BB2B0066D49D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

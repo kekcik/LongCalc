@@ -33,7 +33,7 @@ std::string to_string(big_integer const& a)
         bb = div_long_short(aa, 1000000000);
         lexem = (aa - bb * mod).data[0];
         aa = bb;
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < 9; ++i)
         {
             res += lexem % 10 + 48;
             lexem /= 10;
@@ -53,16 +53,14 @@ std::ostream& operator<<(std::ostream& s, big_integer const& a)
 
 big_integer::big_integer()
 {
-    this->data.clear();
-    this->data.push_back(0);
-    this->flag = false;
+    data.push_back(0);
+    flag = false;
 }
 
 big_integer::big_integer(std::string str)
 {
     big_integer b10(10);
     big_integer b0(0);
-
     for (int i = str[0] == '-' ? 1 : 0; i < str.size(); ++i)
     {
         *this *= b10;
@@ -75,8 +73,8 @@ big_integer::big_integer(std::string str)
 
 big_integer::big_integer(big_integer const& other)
 {
-    this -> flag = other.flag;
-    this -> data = other.data;
+    flag = other.flag;
+    data = other.data;
 }
 
 big_integer::big_integer(int a)
@@ -101,7 +99,7 @@ big_integer& big_integer::operator=(big_integer const& other)
 bool operator==(big_integer const& a, big_integer const& b)
 {
     if (a.flag == b.flag and a.data.size() == b.data.size()) {
-        for (int i = 0; i < (int)a.data.size(); i++) {
+        for (int i = 0; i < (int)a.data.size(); ++i) {
             if (a.data[i] != b.data[i]) return false;
         }
         return true;
@@ -227,7 +225,7 @@ big_integer operator-(big_integer a, big_integer const& b)
 
 big_integer& big_integer::operator--()
 {
-    this->operator-=(1);
+    /*t->*/operator-=(1);
     return *this;
 }
 
@@ -240,7 +238,7 @@ big_integer big_integer::operator--(int)
 
 big_integer& big_integer::operator++()
 {
-    this->operator += (1);
+    /*t->*/operator += (1);
     return *this;
 }
 
@@ -297,7 +295,125 @@ big_integer operator*(big_integer a, big_integer const& b)
 {
     return a *= b;
 }
-
+big_integer& big_integer::operator/=(big_integer const& b)
+{
+    if (data.size() < b.data.size())
+    {
+        data.clear();
+        data.push_back(0);
+        flag = false;
+        return *this;
+    }
+    if (b.data.size() == 1)
+    {
+        *this = div_long_short(*this, b.data[0]);
+        flag = flag ^ b.flag;
+        return *this;
+    }
+    
+    bool f = flag;
+    big_integer u (*this);
+    u.data.push_back(0);
+    big_integer m0 (0);
+    big_integer bb (b);
+    big_integer result (0);
+    result.data.resize(data.size() + 1);
+    
+    ll n = bb.data.size();
+    ll m = data.size() - bb.data.size();
+    ll uJ, vJ, i;
+    ull temp1, temp2, temp;
+    ull scale;
+    ull qGuessm, r;
+    ull borrow, carry;
+    
+    scale = mod / (bb.data[n-1] + 1);
+    if (scale > 1)
+    {
+        m0.data[0] = (ui) scale;
+        u *= m0;
+        bb *= m0;
+    }
+    
+    for (vJ = m, uJ = n + vJ; vJ >= 0; --vJ, -- uJ)
+    {
+        qGuessm = ((ull)u.data[uJ] * mod + (ull)u.data[uJ - 1]) / (ull)bb.data[n-1];
+        r =       ((ull)u.data[uJ] * mod + (ull)u.data[uJ - 1]) % (ull)bb.data[n-1];
+        while (r < mod)
+        {
+            temp2 = (ull) bb.data[n - 2] * qGuessm;
+            temp1 = (ull) r * (ull)mod + (ull)u.data[uJ - 2];
+            
+            if ((temp2 > temp1)||(qGuessm == mod))
+            {
+                --qGuessm;
+                r += bb.data[n - 1];
+            } else break;
+        }
+        carry = 0;
+        borrow = 0;
+        for (i = 0; i < n; i++)
+        {
+            temp1 = (ull)bb.data[i] * qGuessm + carry;
+            carry = temp1 >> 32;
+            temp1 = (ui) temp1;
+            temp2 = (ull)u.data[i + vJ] - temp1 - borrow;
+            
+            if ((ull)u.data[i + vJ]  < temp1 + borrow)
+            {
+                u.data[i + vJ] = (ui)temp2;
+                borrow = 1;
+            }
+            else
+            {
+                u.data[i + vJ] = (ui)temp2;
+                borrow = 0;
+            }
+        }
+        temp2 = (ull)u.data[i + vJ] - carry - borrow;
+        if ((ull)u.data[i + vJ]  < carry + borrow)
+        {
+            u.data[i + vJ] = (ui)temp2;
+            borrow = 1;
+        }
+        else
+        {
+            u.data[i + vJ] = (ui)temp2;
+            borrow = 0;
+        }
+        
+        if (borrow == 0)
+        {
+            result.data[vJ] = (ui)qGuessm;
+        }
+        else
+        {
+            result.data[vJ] = (ui)qGuessm - 1;
+            carry = 0;
+            for (i = 0; i < n; ++i)
+            {
+                temp = (ull)u.data[i+vJ] + (ull)bb.data[i] + (ull)carry;
+                if (temp >= mod)
+                {
+                    u.data[i + vJ] = (ui)temp;
+                    carry = 1;
+                }
+                else
+                {
+                    u.data[i + vJ] = (ui)temp;
+                    carry = 0;
+                }
+            }
+            u.data[i + vJ] += carry - mod;
+        }
+        resize(u);
+    }
+    resize(result);
+    *this = result;
+    flag = f ^ b.flag;
+    return *this;
+}
+/*
 big_integer& big_integer::operator/=(big_integer const& b)
 {
     if (b.data.size() == 1)
@@ -369,6 +485,7 @@ big_integer& big_integer::operator/=(big_integer const& b)
     *this = result;
     return *this;
 }
+*/
 
 big_integer operator/(big_integer a, big_integer const& b)
 {
