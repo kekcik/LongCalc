@@ -148,9 +148,10 @@ big_integer div_long_short (big_integer& a, ui b)
 {
     big_integer result (a);
     ull balance = 0;
+    ull cur;
     for (int i = (int) result.data.size() - 1; i >=0; --i)
     {
-        ull cur = (ull) result.data[i] + balance * mod;
+        cur = (ull) result.data[i] + balance * mod;
         result.data[i] = (ui) (cur / b);
         balance = cur % b;
     }
@@ -315,7 +316,7 @@ big_integer& big_integer::operator/=(big_integer const& b)
     bool f = flag;
     big_integer u (*this);
     u.data.push_back(0);
-    big_integer m0 (0);
+    //big_integer m0 (0);
     big_integer bb (b);
     big_integer result (0);
     result.data.resize(data.size() + 1);
@@ -331,9 +332,9 @@ big_integer& big_integer::operator/=(big_integer const& b)
     scale = mod / (bb.data[n-1] + 1);
     if (scale > 1)
     {
-        m0.data[0] = (ui) scale;
-        u *= m0;
-        bb *= m0;
+        //m0.data[0] = (ui) scale;
+        u *=  big_integer((ui) scale);
+        bb *= big_integer((ui) scale);
     }
     
     for (vJ = m, uJ = n + vJ; vJ >= 0; --vJ, -- uJ)
