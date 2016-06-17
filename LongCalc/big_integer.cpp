@@ -18,7 +18,6 @@ big_integer& resize (big_integer & a)
 }
 std::string to_string(big_integer const& a)
 {
-    
     std::string res = "";
     big_integer aa (a);
     big_integer bb (0);
@@ -30,7 +29,8 @@ std::string to_string(big_integer const& a)
     
     while (aa > big_integer(0))
     {
-        bb = div_long_short(aa, 1000000000);
+        bb = aa;
+        div_long_short(bb, 1000000000);
         lexem = (aa - bb * mod).data[0];
         aa = bb;
         for (int i = 0; i < 9; ++i)
@@ -144,19 +144,17 @@ bool operator>=(big_integer const& a, big_integer const& b)
     return !operator<(a, b);
 }
 
-big_integer div_long_short (big_integer& a, ui b)
+void div_long_short (big_integer& a, ui b)
 {
-    big_integer result (a);
     ull balance = 0;
     ull cur;
-    for (int i = (int) result.data.size() - 1; i >=0; --i)
+    for (int i = (int) a.data.size() - 1; i >=0; --i)
     {
-        cur = (ull) result.data[i] + balance * mod;
-        result.data[i] = (ui) (cur / b);
+        cur = a.data[i] + balance * mod;
+        a.data[i] = (ui) (cur / b);
         balance = cur % b;
     }
-    resize(result);
-    return result;
+    resize(a);
 }
 
 big_integer& big_integer::operator+=(big_integer const& b)
@@ -308,7 +306,7 @@ big_integer& big_integer::operator/=(big_integer const& b)
     }
     if (b.data.size() == 1)
     {
-        *this = div_long_short(*this, b.data[0]);
+        div_long_short(*this, b.data[0]);
         flag = flag ^ b.flag;
         return *this;
     }
@@ -316,7 +314,6 @@ big_integer& big_integer::operator/=(big_integer const& b)
     bool f = flag;
     big_integer u (*this);
     u.data.push_back(0);
-    //big_integer m0 (0);
     big_integer bb (b);
     big_integer result (0);
     result.data.resize(data.size() + 1);
@@ -332,7 +329,6 @@ big_integer& big_integer::operator/=(big_integer const& b)
     scale = mod / (bb.data[n-1] + 1);
     if (scale > 1)
     {
-        //m0.data[0] = (ui) scale;
         u *=  big_integer((ui) scale);
         bb *= big_integer((ui) scale);
     }
@@ -363,7 +359,7 @@ big_integer& big_integer::operator/=(big_integer const& b)
             borrow = (ull)u.data[i + vJ]  < temp1 + borrow ? 1 : 0;
             u.data[i + vJ] = (ui)temp2;
         }
-        temp2 = (ull)u.data[i + vJ] - carry - borrow;
+        temp2 =  (ull)u.data[i + vJ] - carry - borrow;
         borrow = (ull)u.data[i + vJ]  < carry + borrow ? 1 : 0;
         u.data[i + vJ] = (ui)temp2;
         
@@ -398,9 +394,7 @@ big_integer operator/(big_integer a, big_integer const& b)
 
 big_integer& big_integer::operator%=(big_integer const& rhs)
 {
-    
-    big_integer res = *this - rhs * (*this / rhs);
-    *this = res;
+    *this -= rhs * (*this / rhs);
     return *this;
 }
 

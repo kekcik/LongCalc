@@ -564,7 +564,7 @@ TEST(correctness, div_int_min_2)
 namespace
 {
     unsigned const number_of_iterations = 10;
-    size_t const number_of_multipliers = 10000;
+    size_t const number_of_multipliers = 1000;
     
     int myrand()
     {
@@ -581,7 +581,6 @@ TEST(correctness, mul_div_randomized)
     for (unsigned itn = 0; itn != number_of_iterations; ++itn)
     {
         std::vector<int> multipliers;
-        
         for (size_t i = 0; i != number_of_multipliers; ++i)
             multipliers.push_back(myrand());
         

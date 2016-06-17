@@ -50,7 +50,7 @@ private:
     friend big_integer& binaryOperation (big_integer& a, big_integer const& b, int type);
     friend big_integer div2(big_integer a);
     friend big_integer& resize(big_integer& a);
-    friend big_integer div_long_short (big_integer& first, unsigned int b);
+    friend void div_long_short (big_integer& first, unsigned int b);
     std::vector <unsigned int> data;
     bool flag;
 };
