@@ -4,11 +4,13 @@
 #include <stdexcept>
 #include <algorithm>
 #include <string>
-#define ull unsigned long long
-#define ll long long
-#define ui unsigned int
-unsigned long long p = 1 << 30;
-unsigned long long mod = 4 * p;
+#include <cstdint>
+
+#define ull uint64_t
+#define ll int64_t
+#define ui uint32_t
+ull p = 1 << 30;
+ull mod = 4 * p;
 
 big_integer& resize (big_integer & a)
 {
@@ -33,7 +35,7 @@ std::string to_string(big_integer const& a)
         div_long_short(bb, 1000000000);
         lexem = (aa - bb * mod).data[0];
         aa = bb;
-        for (int i = 0; i < 9; ++i)
+        for (int32_t i = 0; i < 9; ++i)
         {
             res += lexem % 10 + 48;
             lexem /= 10;
@@ -42,7 +44,7 @@ std::string to_string(big_integer const& a)
     
     while (res[res.size() - 1] == '0') res.pop_back();
     if (a.flag == 1) res += '-';
-    for (int  i = 0; i < res.size() / 2; ++i) std::swap(res[i], res[res.size()-1-i]);
+    for (int32_t  i = 0; i < res.size() / 2; ++i) std::swap(res[i], res[res.size()-1-i]);
     return res;
 }
 
@@ -57,11 +59,11 @@ big_integer::big_integer()
     flag = false;
 }
 
-big_integer::big_integer(std::string str)
+big_integer::big_integer(std::string const& str)
 {
     big_integer b10(10);
     big_integer b0(0);
-    for (int i = str[0] == '-' ? 1 : 0; i < str.size(); ++i)
+    for (int32_t i = str[0] == '-' ? 1 : 0; i < str.size(); ++i)
     {
         *this *= b10;
         b0.data[0] = str[i] - 48;
@@ -79,8 +81,9 @@ big_integer::big_integer(big_integer const& other)
 
 big_integer::big_integer(int a)
 {
-    flag = a < 0;
-    data.push_back(flag ? -a : a);
+    ll aa = a;
+    flag = aa < 0;
+    data.push_back((ui)(flag ? -aa : aa));
 }
 
 big_integer::big_integer(ui a)
@@ -99,7 +102,7 @@ big_integer& big_integer::operator=(big_integer const& other)
 bool operator==(big_integer const& a, big_integer const& b)
 {
     if (a.flag == b.flag and a.data.size() == b.data.size()) {
-        for (int i = 0; i < (int)a.data.size(); ++i) {
+        for (int32_t i = 0; i < (int32_t)a.data.size(); ++i) {
             if (a.data[i] != b.data[i]) return false;
         }
         return true;
@@ -120,8 +123,8 @@ bool operator<(big_integer const& a, big_integer const& b)
     {
         return ((a.data.size() < b.data.size()) ^ a.flag);
     }
-    int i;
-    for (i = (int) a.data.size() - 1; i >= 0 and a.data[i] == b.data[i]; --i);
+    int32_t i;
+    for (i = (int32_t) a.data.size() - 1; i >= 0 and a.data[i] == b.data[i]; --i);
     if (i < 0)
     {
         return false;
@@ -148,7 +151,7 @@ void div_long_short (big_integer& a, ui b)
 {
     ull balance = 0;
     ull cur;
-    for (int i = (int) a.data.size() - 1; i >=0; --i)
+    for (int32_t i = (int32_t) a.data.size() - 1; i >=0; --i)
     {
         cur = a.data[i] + balance * mod;
         a.data[i] = (ui) (cur / b);
@@ -162,7 +165,7 @@ big_integer& big_integer::operator+=(big_integer const& b)
     if (b.data.size() > data.size()) data.resize(b.data.size());
     bool f = false;
     ll balance = 0, first, second;
-    int length = (data.size() > b.data.size() ? (int) data.size() : (int) b.data.size());
+    int32_t length = (data.size() > b.data.size() ? (int32_t) data.size() : (int32_t) b.data.size());
     
     if (flag == b.flag)
     {
@@ -175,7 +178,7 @@ big_integer& big_integer::operator+=(big_integer const& b)
             f = true;
         }
     }
-    for (int i = 0; i < length; ++i)
+    for (int32_t i = 0; i < length; ++i)
     {
         first = i < data.size() ? data[i] : 0;
         if (f ^ flag) first = -first;
@@ -265,12 +268,12 @@ big_integer& big_integer::operator*=(big_integer const& b)
     big_integer result;
     ull mul;
     ui mU, mD;
-    int k;
-    result.data.resize((int)data.size() + (int)b.data.size());
+    int32_t k;
+    result.data.resize((int32_t)data.size() + (int32_t)b.data.size());
     result.flag = flag != b.flag ? 1 : 0;
-    for (int i = 0; i < (int) data.size(); ++i)
+    for (int32_t i = 0; i < (int32_t) data.size(); ++i)
     {
-        for (int j = 0; j < (int) b.data.size(); ++j)
+        for (int32_t j = 0; j < (int32_t) b.data.size(); ++j)
         {
             mul = (ull)data[i] * (ull)b.data[j];
             mU  = (ui) (mul >> 32);
@@ -406,12 +409,12 @@ big_integer operator%(big_integer a, big_integer const& b)
 big_integer& big_integer::operator<<=(int a)
 {
     ull current, next = 0;
-    int aShort = a % 32;
-    int aLong  = a / 32;
+    int32_t aShort = a % 32;
+    int32_t aLong  = a / 32;
     data.resize(aLong + data.size());
     
     //left short shift
-    for (int i = 0; i < (int) data.size() - aLong; ++i)
+    for (int32_t i = 0; i < (int32_t) data.size() - aLong; ++i)
     {
         current = (data[i] >> ((32 - aShort)) << (32 - aShort));
         data[i] <<= aShort;
@@ -420,7 +423,7 @@ big_integer& big_integer::operator<<=(int a)
     }
     
     //left long shift
-    for (int i = (int)data.size() - 1; i >= 0; --i)
+    for (int32_t i = (int32_t)data.size() - 1; i >= 0; --i)
         data[i] = i - aLong >= 0 ? data[i - aLong] : 0;
     
     return *this;
@@ -429,8 +432,8 @@ big_integer& big_integer::operator<<=(int a)
 big_integer& big_integer::operator>>=(int a)
 {
     ull current, previous = 0;
-    int aShort = a % 32;
-    int aLong  = a / 32;
+    int32_t aShort = a % 32;
+    int32_t aLong  = a / 32;
     bool inv = flag;
     
     if (flag)
@@ -440,7 +443,7 @@ big_integer& big_integer::operator>>=(int a)
     }
     
     //right short shift
-    for (int i = (int) data.size() - 1; i >= 0; --i)
+    for (int32_t i = (int32_t) data.size() - 1; i >= 0; --i)
     {
         current = (data[i] << ((32 - aShort)) >> (32 - aShort));
         data[i] >>= aShort;
@@ -449,8 +452,8 @@ big_integer& big_integer::operator>>=(int a)
     }
     
     //right long shift
-    for (int i = 0; i < (int) data.size(); ++i)
-        data[i] = i < (int) data.size() - aLong ? data[i + aLong] : 0;
+    for (int32_t i = 0; i < (int32_t) data.size(); ++i)
+        data[i] = i < (int32_t) data.size() - aLong ? data[i + aLong] : 0;
     
     if (inv)
     {
@@ -481,11 +484,11 @@ big_integer& binaryOperation (big_integer& a, big_integer const& b, int type)
     bool invA = a.flag;
     bool invB = b.flag;
     a.flag = false;
-    int length = (int) std::max(a.data.size(), b.data.size());
+    int32_t length = (int32_t) std::max(a.data.size(), b.data.size());
     ui first =  invA ? ~(a.data[0] - 1) : a.data[0];
     ui second = invB ? ~(b.data[0] - 1) : b.data[0];
     a.data.resize(length);
-    for (int i = 0; i < length; ++i)
+    for (int32_t i = 0; i < length; ++i)
     {
         if (type == 0) a.data[i] = first & second;
         if (type == 1) a.data[i] = first | second;
@@ -499,12 +502,17 @@ big_integer& binaryOperation (big_integer& a, big_integer const& b, int type)
     {
         a -= 1;
         a.flag = true;
-        for (int i = 0; i < (int) a.data.size(); ++i)
+        for (int i = 0; i < (int32_t) a.data.size(); ++i)
         {
             a.data[i] = ~a.data[i];
         }
     }
     return resize(a);
+}
+
+big_integer::~big_integer()
+{
+    
 }
 
 big_integer& big_integer::operator&=(big_integer const& b)

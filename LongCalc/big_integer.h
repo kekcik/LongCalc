@@ -5,13 +5,12 @@
 #include <vector>
 struct big_integer
 {
-    big_integer(std::string str);
     big_integer();
     big_integer(big_integer const& other);
     big_integer(int a);
     big_integer(unsigned int a);
-    //explicit big_integer(std::string const& str);
-    //~big_integer();
+    explicit big_integer(std::string const& str);
+    ~big_integer();
     
     big_integer& operator=(big_integer const& other);
     
@@ -43,15 +42,13 @@ struct big_integer
     friend bool operator>(big_integer const& a, big_integer const& b);
     friend bool operator<=(big_integer const& a, big_integer const& b);
     friend bool operator>=(big_integer const& a, big_integer const& b);
-    
     friend std::string to_string(big_integer const& a);
-private:
     
+private:
     friend big_integer& binaryOperation (big_integer& a, big_integer const& b, int type);
-    friend big_integer div2(big_integer a);
     friend big_integer& resize(big_integer& a);
     friend void div_long_short (big_integer& first, unsigned int b);
-    std::vector <unsigned int> data;
+    std::vector <uint32_t> data;
     bool flag;
 };
 
