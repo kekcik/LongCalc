@@ -64,6 +64,7 @@ big_integer::big_integer(std::string const& str)
 {
     big_integer b10(10);
     big_integer b0(0);
+    flag = false;
     for (int32_t i = str[0] == '-' ? 1 : 0; i < str.size(); ++i)
     {
         *this *= b10;
