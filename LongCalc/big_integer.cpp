@@ -64,6 +64,8 @@ big_integer::big_integer(std::string const& str)
 {
     big_integer b10(10);
     big_integer b0(0);
+    data.clear();
+    data.push_back(0);
     flag = false;
     for (int32_t i = str[0] == '-' ? 1 : 0; i < str.size(); ++i)
     {
@@ -337,7 +339,8 @@ big_integer& big_integer::operator/=(big_integer const& b)
         u *=  big_integer((ui) scale);
         bb *= big_integer((ui) scale);
     }
-    
+    u.data.push_back(0);
+    u.data.push_back(0);
     for (vJ = m, uJ = n + vJ; vJ >= 0; --vJ, -- uJ)
     {
         qGuessm = ((ull)u.data[uJ] * mod + (ull)u.data[uJ - 1]) / (ull)bb.data[n-1];

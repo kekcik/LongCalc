@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AFC99D4E1D12E1F50074D77D /* big_integer_testing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F41D10BB510066D49D /* big_integer_testing.cpp */; };
-		AFC99D4F1D12E1F50074D77D /* big_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F61D10BB5E0066D49D /* big_integer.cpp */; };
-		AFC99D501D12E1F50074D77D /* big_integer.h in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F71D10BB5E0066D49D /* big_integer.h */; };
-		AFC99D511D12E1F50074D77D /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F91D10BB700066D49D /* gtest-all.cc */; };
-		AFC99D521D12E1F50074D77D /* gtest-main.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474FB1D10BB7F0066D49D /* gtest-main.cc */; };
-		AFC99D531D12E1F50074D77D /* gtest.h in Sources */ = {isa = PBXBuildFile; fileRef = AF2474FE1D10BB8E0066D49D /* gtest.h */; };
+		AFDAD5FD1D21854E009415DD /* big_integer_testing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F41D10BB510066D49D /* big_integer_testing.cpp */; };
+		AFDAD5FE1D21854E009415DD /* big_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F61D10BB5E0066D49D /* big_integer.cpp */; };
+		AFDAD5FF1D21854E009415DD /* big_integer.h in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F71D10BB5E0066D49D /* big_integer.h */; };
+		AFDAD6001D21854E009415DD /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F91D10BB700066D49D /* gtest-all.cc */; };
+		AFDAD6011D21854E009415DD /* gtest-main.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474FB1D10BB7F0066D49D /* gtest-main.cc */; };
+		AFDAD6021D21854E009415DD /* gtest.h in Sources */ = {isa = PBXBuildFile; fileRef = AF2474FE1D10BB8E0066D49D /* gtest.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -137,12 +137,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFC99D4E1D12E1F50074D77D /* big_integer_testing.cpp in Sources */,
-				AFC99D4F1D12E1F50074D77D /* big_integer.cpp in Sources */,
-				AFC99D501D12E1F50074D77D /* big_integer.h in Sources */,
-				AFC99D511D12E1F50074D77D /* gtest-all.cc in Sources */,
-				AFC99D521D12E1F50074D77D /* gtest-main.cc in Sources */,
-				AFC99D531D12E1F50074D77D /* gtest.h in Sources */,
+				AFDAD5FD1D21854E009415DD /* big_integer_testing.cpp in Sources */,
+				AFDAD5FE1D21854E009415DD /* big_integer.cpp in Sources */,
+				AFDAD5FF1D21854E009415DD /* big_integer.h in Sources */,
+				AFDAD6001D21854E009415DD /* gtest-all.cc in Sources */,
+				AFDAD6011D21854E009415DD /* gtest-main.cc in Sources */,
+				AFDAD6021D21854E009415DD /* gtest.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

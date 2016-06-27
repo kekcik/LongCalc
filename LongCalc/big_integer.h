@@ -3,6 +3,8 @@
 
 #include <iosfwd>
 #include <vector>
+#include <cstdint>
+
 struct big_integer
 {
     big_integer();
