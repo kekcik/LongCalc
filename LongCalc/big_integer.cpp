@@ -44,7 +44,7 @@ std::string to_string(big_integer const& a)
     }
     
     while (res[res.size() - 1] == '0') res.pop_back();
-    if (a.flag == 1) res += '-';
+    if (a.flag == true) res += '-';
     for (int32_t  i = 0; i < res.size() / 2; ++i) std::swap(res[i], res[res.size()-1-i]);
     return res;
 }
@@ -494,7 +494,7 @@ big_integer& binaryOperation (big_integer& a, big_integer const& b, int type)
         if (type == 0) a.data[i] = first & second;
         if (type == 1) a.data[i] = first | second;
         if (type == 2) a.data[i] = first ^ second;
-        first = i + 1 < a.data.size() ? a.data[i + 1] : 0;
+        first = i + 1 < length ? a.data[i + 1] : 0;
         if (invA) first = ~first;
         second = i + 1 < b.data.size() ? b.data[i + 1] : 0;
         if (invB) second = ~second;
