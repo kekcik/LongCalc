@@ -9,6 +9,7 @@
 #define ull uint64_t
 #define ll int64_t
 #define ui uint32_t
+
 ull p = 1 << 30;
 ull mod = 4 * p;
 
@@ -254,7 +255,7 @@ big_integer big_integer::operator++(int)
 big_integer big_integer::operator-() const
 {
     big_integer r = *this;
-    r.flag = (r.flag ? 0 : 1);
+    r.flag = (r.flag ? false : true);
     if (*this == big_integer(0)) r = big_integer(0);
     return r;
 }
@@ -269,8 +270,8 @@ big_integer& big_integer::operator*=(big_integer const& b)
     ull mul;
     ui mU, mD;
     int32_t k;
-    result.data.resize((int32_t)data.size() + (int32_t)b.data.size());
-    result.flag = flag != b.flag ? 1 : 0;
+    result.data.resize((int32_t)data.size() + (int32_t)b.data.size() + 1);
+    result.flag = flag != b.flag ? true : false;
     for (int32_t i = 0; i < (int32_t) data.size(); ++i)
     {
         for (int32_t j = 0; j < (int32_t) b.data.size(); ++j)
@@ -319,7 +320,7 @@ big_integer& big_integer::operator/=(big_integer const& b)
     u.data.push_back(0);
     big_integer bb (b);
     big_integer result (0);
-    result.data.resize(data.size() + 1);
+    result.data.resize(data.size() + 2);
     
     ll n = bb.data.size();
     ll m = data.size() - bb.data.size();
@@ -411,7 +412,7 @@ big_integer& big_integer::operator<<=(int a)
     ull current, next = 0;
     int32_t aShort = a % 32;
     int32_t aLong  = a / 32;
-    data.resize(aLong + data.size());
+    data.resize(aLong + data.size() + 2);
     
     //left short shift
     for (int32_t i = 0; i < (int32_t) data.size() - aLong; ++i)
@@ -426,7 +427,7 @@ big_integer& big_integer::operator<<=(int a)
     for (int32_t i = (int32_t)data.size() - 1; i >= 0; --i)
         data[i] = i - aLong >= 0 ? data[i - aLong] : 0;
     
-    return *this;
+    return resize(*this);
 }
 
 big_integer& big_integer::operator>>=(int a)
@@ -438,7 +439,7 @@ big_integer& big_integer::operator>>=(int a)
     
     if (flag)
     {
-        flag = 0;
+        flag = false;
         *this -= 1;
     }
     
@@ -458,7 +459,7 @@ big_integer& big_integer::operator>>=(int a)
     if (inv)
     {
         *this += 1;
-        flag = 1;
+        flag = true;
     }
     return resize(*this);
 }
