@@ -95,8 +95,8 @@ big_integer::big_integer(ui a)
 
 big_integer& big_integer::operator=(big_integer const& other)
 {
-    this -> data = other.data;
-    this -> flag = other.flag;
+    data = other.data;
+    flag = other.flag;
     return *this;
 }
 
