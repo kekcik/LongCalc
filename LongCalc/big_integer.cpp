@@ -320,6 +320,7 @@ big_integer& big_integer::operator/=(big_integer const& b)
     
     bool f = flag;
     big_integer u (*this);
+    
     u.data.push_back(0);
     big_integer bb (b);
     big_integer result (0);
@@ -339,8 +340,7 @@ big_integer& big_integer::operator/=(big_integer const& b)
         u *=  big_integer((ui) scale);
         bb *= big_integer((ui) scale);
     }
-    u.data.push_back(0);
-    u.data.push_back(0);
+    u.data.resize(std::max(data.size(),u.data.size()) + 2);
     for (vJ = m, uJ = n + vJ; vJ >= 0; --vJ, -- uJ)
     {
         qGuessm = ((ull)u.data[uJ] * mod + (ull)u.data[uJ - 1]) / (ull)bb.data[n-1];
