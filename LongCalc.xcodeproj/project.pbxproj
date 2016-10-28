@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AFA0F4B81DC32EAF00E99DBC /* opt_vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFA0F4B61DC32EAF00E99DBC /* opt_vector.cpp */; };
 		AFDAD5FD1D21854E009415DD /* big_integer_testing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F41D10BB510066D49D /* big_integer_testing.cpp */; };
 		AFDAD5FE1D21854E009415DD /* big_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F61D10BB5E0066D49D /* big_integer.cpp */; };
 		AFDAD5FF1D21854E009415DD /* big_integer.h in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F71D10BB5E0066D49D /* big_integer.h */; };
@@ -37,6 +38,8 @@
 		AF2474FB1D10BB7F0066D49D /* gtest-main.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "gtest-main.cc"; sourceTree = "<group>"; };
 		AF2474FE1D10BB8E0066D49D /* gtest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gtest.h; sourceTree = "<group>"; };
 		AF2475451D11B32C0066D49D /* mainForInf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mainForInf.cpp; sourceTree = "<group>"; };
+		AFA0F4B61DC32EAF00E99DBC /* opt_vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = opt_vector.cpp; sourceTree = "<group>"; };
+		AFA0F4B71DC32EAF00E99DBC /* opt_vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = opt_vector.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +80,8 @@
 				AF2474FB1D10BB7F0066D49D /* gtest-main.cc */,
 				AF2474FE1D10BB8E0066D49D /* gtest.h */,
 				AF2475451D11B32C0066D49D /* mainForInf.cpp */,
+				AFA0F4B61DC32EAF00E99DBC /* opt_vector.cpp */,
+				AFA0F4B71DC32EAF00E99DBC /* opt_vector.hpp */,
 			);
 			path = LongCalc;
 			sourceTree = "<group>";
@@ -141,6 +146,7 @@
 				AFDAD5FE1D21854E009415DD /* big_integer.cpp in Sources */,
 				AFDAD5FF1D21854E009415DD /* big_integer.h in Sources */,
 				AFDAD6001D21854E009415DD /* gtest-all.cc in Sources */,
+				AFA0F4B81DC32EAF00E99DBC /* opt_vector.cpp in Sources */,
 				AFDAD6011D21854E009415DD /* gtest-main.cc in Sources */,
 				AFDAD6021D21854E009415DD /* gtest.h in Sources */,
 			);

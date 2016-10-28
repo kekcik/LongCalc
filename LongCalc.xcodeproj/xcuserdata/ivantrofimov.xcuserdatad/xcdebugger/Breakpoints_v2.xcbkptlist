@@ -16,7 +16,7 @@
             startingLineNumber = "438"
             endingLineNumber = "438"
             landmarkName = "big_integer::operator&gt;&gt;=(int a)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -32,7 +32,7 @@
             startingLineNumber = "305"
             endingLineNumber = "305"
             landmarkName = "big_integer::operator/=(big_integer const&amp; b)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -48,7 +48,7 @@
             startingLineNumber = "346"
             endingLineNumber = "346"
             landmarkName = "big_integer::operator/=(big_integer const&amp; b)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -64,7 +64,7 @@
             startingLineNumber = "347"
             endingLineNumber = "347"
             landmarkName = "big_integer::operator/=(big_integer const&amp; b)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -80,7 +80,7 @@
             startingLineNumber = "19"
             endingLineNumber = "19"
             landmarkName = "main ()"
-            landmarkType = "7">
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -96,7 +96,7 @@
             startingLineNumber = "391"
             endingLineNumber = "391"
             landmarkName = "big_integer::operator/=(big_integer const&amp; b)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -112,7 +112,7 @@
             startingLineNumber = "389"
             endingLineNumber = "389"
             landmarkName = "big_integer::operator/=(big_integer const&amp; b)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -128,7 +128,7 @@
             startingLineNumber = "369"
             endingLineNumber = "369"
             landmarkName = "big_integer::operator/=(big_integer const&amp; b)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -144,7 +144,7 @@
             startingLineNumber = "321"
             endingLineNumber = "321"
             landmarkName = "big_integer::operator/=(big_integer const&amp; b)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
