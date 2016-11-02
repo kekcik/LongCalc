@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		AFA0F4B81DC32EAF00E99DBC /* opt_vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFA0F4B61DC32EAF00E99DBC /* opt_vector.cpp */; };
-		AFDAD5FD1D21854E009415DD /* big_integer_testing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F41D10BB510066D49D /* big_integer_testing.cpp */; };
-		AFDAD5FE1D21854E009415DD /* big_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F61D10BB5E0066D49D /* big_integer.cpp */; };
-		AFDAD5FF1D21854E009415DD /* big_integer.h in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F71D10BB5E0066D49D /* big_integer.h */; };
-		AFDAD6001D21854E009415DD /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F91D10BB700066D49D /* gtest-all.cc */; };
-		AFDAD6011D21854E009415DD /* gtest-main.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474FB1D10BB7F0066D49D /* gtest-main.cc */; };
-		AFDAD6021D21854E009415DD /* gtest.h in Sources */ = {isa = PBXBuildFile; fileRef = AF2474FE1D10BB8E0066D49D /* gtest.h */; };
+		AFA0F4BA1DC383B900E99DBC /* big_integer_testing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F41D10BB510066D49D /* big_integer_testing.cpp */; };
+		AFA0F4BB1DC383B900E99DBC /* big_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F61D10BB5E0066D49D /* big_integer.cpp */; };
+		AFA0F4BC1DC383B900E99DBC /* big_integer.h in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F71D10BB5E0066D49D /* big_integer.h */; };
+		AFA0F4BD1DC383B900E99DBC /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F91D10BB700066D49D /* gtest-all.cc */; };
+		AFA0F4BE1DC383B900E99DBC /* gtest-main.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474FB1D10BB7F0066D49D /* gtest-main.cc */; };
+		AFA0F4BF1DC383B900E99DBC /* gtest.h in Sources */ = {isa = PBXBuildFile; fileRef = AF2474FE1D10BB8E0066D49D /* gtest.h */; };
+		AFA0F4C01DC383B900E99DBC /* opt_vector.hpp in Sources */ = {isa = PBXBuildFile; fileRef = AFA0F4B71DC32EAF00E99DBC /* opt_vector.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -142,13 +143,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFDAD5FD1D21854E009415DD /* big_integer_testing.cpp in Sources */,
-				AFDAD5FE1D21854E009415DD /* big_integer.cpp in Sources */,
-				AFDAD5FF1D21854E009415DD /* big_integer.h in Sources */,
-				AFDAD6001D21854E009415DD /* gtest-all.cc in Sources */,
+				AFA0F4BA1DC383B900E99DBC /* big_integer_testing.cpp in Sources */,
+				AFA0F4BB1DC383B900E99DBC /* big_integer.cpp in Sources */,
+				AFA0F4BC1DC383B900E99DBC /* big_integer.h in Sources */,
+				AFA0F4BD1DC383B900E99DBC /* gtest-all.cc in Sources */,
+				AFA0F4BE1DC383B900E99DBC /* gtest-main.cc in Sources */,
+				AFA0F4BF1DC383B900E99DBC /* gtest.h in Sources */,
+				AFA0F4C01DC383B900E99DBC /* opt_vector.hpp in Sources */,
 				AFA0F4B81DC32EAF00E99DBC /* opt_vector.cpp in Sources */,
-				AFDAD6011D21854E009415DD /* gtest-main.cc in Sources */,
-				AFDAD6021D21854E009415DD /* gtest.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

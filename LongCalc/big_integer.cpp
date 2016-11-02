@@ -273,7 +273,8 @@ big_integer& big_integer::operator*=(big_integer const& b)
     ull mul;
     ui mU, mD;
     int32_t k;
-    result.data.resize((int32_t)data.size() + (int32_t)b.data.size() + 1);
+    int a = (int32_t)data.size() + (int32_t)b.data.size() + 1;
+    result.data.resize(a);
     result.flag = flag != b.flag ? true : false;
     for (int32_t i = 0; i < (int32_t) data.size(); ++i)
     {

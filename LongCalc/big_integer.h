@@ -4,6 +4,7 @@
 #include <iosfwd>
 #include <vector>
 #include <cstdint>
+#include "opt_vector.hpp"
 
 struct big_integer
 {
@@ -50,7 +51,8 @@ private:
     friend big_integer& binaryOperation (big_integer& a, big_integer const& b, int type);
     friend big_integer& resize(big_integer& a);
     friend void div_long_short (big_integer& first, unsigned int b);
-    std::vector <uint32_t> data;
+    //std::vector <uint32_t> data;
+    opt_vector data;
     bool flag;
 };
 
