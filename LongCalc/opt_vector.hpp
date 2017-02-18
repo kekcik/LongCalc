@@ -37,6 +37,7 @@ private:
         my_vector * big_number;
         uint32_t small_number;
     };
+    bool is_big;
     size_t cur_size;
     void safe_delete();
     void make_copy();
