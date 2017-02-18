@@ -25,11 +25,11 @@ std::string to_string(big_integer const& a)
     big_integer aa (a);
     big_integer bb (0);
     big_integer mod(1000000000);
-    
+
     ui lexem;
     aa.flag = false;
     if (a == big_integer(0)) return "0";
-    
+
     while (aa > big_integer(0))
     {
         bb = aa;
@@ -42,7 +42,7 @@ std::string to_string(big_integer const& a)
             lexem /= 10;
         }
     }
-    
+
     while (res[res.size() - 1] == '0') res.pop_back();
     if (a.flag == true) res += '-';
     for (int32_t  i = 0; i < res.size() / 2; ++i) std::swap(res[i], res[res.size()-1-i]);
@@ -121,7 +121,7 @@ bool operator!=(big_integer const& a, big_integer const& b)
 
 bool operator<(big_integer const& a, big_integer const& b)
 {
-    
+
     if (a.flag != b.flag) return a.flag;
     if (a.data.size() != b.data.size())
     {
@@ -170,7 +170,7 @@ big_integer& big_integer::operator+=(big_integer const& b)
     bool f = false;
     ll balance = 0, first, second;
     int32_t length = (data.size() > b.data.size() ? (int32_t) data.size() : (int32_t) b.data.size());
-    
+
     if (flag == b.flag)
     {
         f = flag;
@@ -388,7 +388,7 @@ big_integer& big_integer::operator/=(big_integer const& b)
             }
             u.data[i + vJ] += carry - mod;
         }
-        resize(u);
+//        resize(u);
     }
     resize(result);
     *this = result;
