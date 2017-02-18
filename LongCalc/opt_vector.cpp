@@ -11,7 +11,7 @@
 opt_vector::opt_vector() {
     cur_size = 0;
 	small_number = 0;
-	is_big = false;
+	//is_big = false;
 }
 
 opt_vector::opt_vector(const opt_vector& other) {
