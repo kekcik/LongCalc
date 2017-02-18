@@ -10,38 +10,48 @@
 #define opt_vector_hpp
 
 #include <vector>
-#include <stdio.h>
-#include <stdint.h>
 
-struct my_vector {
-    std::vector<uint32_t> data;
-    size_t link;
+using namespace std;
+
+struct my_vector{
+    std::vector<unsigned> data;
+    size_t link_counter;
 };
 
 struct opt_vector{
 public:
-    opt_vector();
-    opt_vector(size_t, uint32_t);
-    opt_vector(const opt_vector&);
-    ~opt_vector();
-    void clear();
-    opt_vector &operator=(opt_vector const &);
-    void resize(size_t);
-    void push_back(uint32_t);
-    void pop_back();
-    uint32_t& operator[](size_t);
-    uint32_t const& operator[](size_t) const;
-    size_t size() const;
-private:
     union {
-        my_vector * big_number;
-        uint32_t small_number;
+        my_vector *big_number;
+        unsigned small_number;
     };
-    bool is_big;
-    size_t cur_size;
+    size_t opt_size;
+    bool big;
     void safe_delete();
-    void make_copy();
+    void make_alone();
+    friend void swap(opt_vector &a, opt_vector &b);
+public:
+    opt_vector();
+    opt_vector(size_t, unsigned);
+    opt_vector(const opt_vector& other);
     
+    ~opt_vector();
+    opt_vector &operator=(opt_vector const &);
+    unsigned& operator[](size_t);
+    unsigned const& operator[](size_t) const;
+    size_t size() const;
+    
+    unsigned &back();
+    unsigned const &back() const;
+    
+    void resize(size_t);
+    
+    void push_back(unsigned);
+    void pop_back();
+    void clear();
+    
+    void push_front(unsigned);
+    void all_reverse();
+    bool empty();
 };
 
 #endif /* opt_vector_hpp */

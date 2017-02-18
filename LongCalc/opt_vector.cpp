@@ -7,13 +7,19 @@
 //
 
 #include "opt_vector.hpp"
+#include <iostream>
+#include <cassert>
 
-opt_vector::opt_vector() : small_number(0), cur_size(0), is_big(false) {}
+opt_vector::opt_vector(){
+    small_number = opt_size = 0;
+    big = false;
+}
 
-opt_vector::opt_vector(const opt_vector& other) : cur_size(other.cur_size), 
-                                                is_big(other.is_big)
-                                                 {
-    if(!other.is_big) {
+opt_vector::opt_vector(const opt_vector& other)
+{
+    big = other.big;
+    opt_size = other.opt_size;
+    if(!other.big) {
         small_number = other.small_number;
     } else {
         other.big_number->link_counter++;
@@ -21,15 +27,15 @@ opt_vector::opt_vector(const opt_vector& other) : cur_size(other.cur_size),
     }
 }
 
-opt_vector::opt_vector(size_t sz, unsigned val) : cur_size(sz) {
+opt_vector::opt_vector(size_t sz, unsigned val) : opt_size(sz) {
     if(sz>1) {
-        is_big = true;
+        big = true;
         big_number = new my_vector();
         big_number->data.push_back(val);
         big_number->data.resize(sz);
         big_number->link_counter = 1;
     } else {
-        is_big = false;
+        big = false;
         small_number = val;
     }
 }
@@ -42,7 +48,7 @@ void opt_vector::safe_delete() {
 }
 
 void opt_vector::make_alone(){
-    if(is_big && big_number->link_counter>1) {
+    if(big && big_number->link_counter>1) {
         my_vector* new_vector = new my_vector();
         big_number->link_counter--;
         new_vector->data = big_number->data;
@@ -52,14 +58,14 @@ void opt_vector::make_alone(){
 }
 
 opt_vector::~opt_vector() {
-    if(is_big && big_number -> link_counter > 0) {
+    if(big && big_number -> link_counter > 0) {
         safe_delete();
     }
 }
 
 void swap(opt_vector& a, opt_vector& b) {
-    swap(a.is_big, b.is_big);
-    swap(a.cur_size, b.cur_size);
+    swap(a.big, b.big);
+    swap(a.opt_size, b.opt_size);
     swap(a.big_number, b.big_number);
 }
 
@@ -70,31 +76,31 @@ opt_vector &opt_vector::operator=(opt_vector const &other) {
 }
 
 unsigned& opt_vector::operator[](size_t index) {
-    assert(index<cur_size);
+    assert(index<opt_size);
     make_alone();
-    return (is_big) ? big_number->data[index] : small_number;
+    return (big) ? big_number->data[index] : small_number;
 }
 
 unsigned const& opt_vector::operator[](size_t index) const {
-    assert(index<cur_size);
-    return (is_big) ? big_number->data[index] : small_number;
+    assert(index<opt_size);
+    return (big) ? big_number->data[index] : small_number;
 }
 
 size_t opt_vector::size() const {
-    return cur_size;
+    return opt_size;
 }
 
 unsigned &opt_vector::back() {
     make_alone();
-    return (is_big) ? big_number->data.back() : small_number;
+    return (big) ? big_number->data.back() : small_number;
 }
 
 unsigned const &opt_vector::back() const  {
-    return (is_big) ? big_number->data.back() : small_number;
+    return (big) ? big_number->data.back() : small_number;
 }
 
 void opt_vector::resize(size_t new_size) {
-    if (is_big) {
+    if (big) {
         make_alone();
         big_number -> data.resize(new_size);
     } else if(new_size > 1){
@@ -102,56 +108,73 @@ void opt_vector::resize(size_t new_size) {
         big_number = new my_vector();
         big_number -> data.resize(new_size, 0);
         big_number -> link_counter = 1;
-        if (cur_size != 0)
+        if (opt_size != 0)
             big_number -> data[0] = temp;
-        is_big = true;
-    } else if (cur_size == 0) {
+        big = true;
+    } else if (opt_size == 0) {
         small_number = 0;
     }
-    cur_size = new_size;
+    opt_size = new_size;
 }
 
 
 void opt_vector::push_back(unsigned a) {
-    if (is_big) {
+    if (big) {
         make_alone();
         big_number -> data.push_back(a);
-    } else if (cur_size == 1){
+    } else if (opt_size == 1){
         unsigned temp = small_number;
         big_number = new my_vector();
         big_number -> data.emplace_back(temp);
         big_number -> data.emplace_back(a);
         big_number->link_counter = 1;
-        is_big = true;
+        big = true;
     } else {
         small_number = a;
     }
-    cur_size++;
+    opt_size++;
 }
 
 void opt_vector::pop_back() {
-    if (is_big) {
+    if (big) {
         make_alone();
         big_number -> data.pop_back();
-    } else if (cur_size == 0) {
+    } else if (opt_size == 0) {
         throw "Zero pop back";
     }
-    cur_size--;
+    opt_size--;
 }
 
 
 void opt_vector::clear() {
-    if (is_big) {
+    if (big) {
         make_alone();
         big_number -> data.clear();
     }
-    cur_size = 0;
+    opt_size = 0;
+}
+
+void opt_vector::push_front(unsigned x) {
+    if (!big) {
+        make_alone();
+        push_back(x);
+        all_reverse();
+    } else {
+        big_number->data.insert(big_number->data.begin(), x);
+        opt_size++;
+    }
+}
+
+void opt_vector::all_reverse() {
+    if (big) {
+        make_alone();
+        std::reverse(big_number->data.begin(), big_number->data.end());
+    }
 }
 
 bool opt_vector::empty() {
-    return cur_size == 0;
+    return opt_size == 0;
 }
-
 
 
 //#include <iostream>
