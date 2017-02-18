@@ -1,16 +1,17 @@
 #ifndef BIG_INTEGER_H
 #define BIG_INTEGER_H
-#include <string>
-//#include <vector>
+
+#include <iosfwd>
+#include <vector>
+#include <cstdint>
+//#include "opt_vector.hpp"
 #include "vector_optimized.h"
-
-
-
 struct big_integer
 {
     big_integer();
     big_integer(big_integer const& other);
     big_integer(int a);
+    big_integer(unsigned int a);
     explicit big_integer(std::string const& str);
     ~big_integer();
     
@@ -21,7 +22,6 @@ struct big_integer
     big_integer& operator*=(big_integer const& rhs);
     big_integer& operator/=(big_integer const& rhs);
     big_integer& operator%=(big_integer const& rhs);
-    
     big_integer& operator&=(big_integer const& rhs);
     big_integer& operator|=(big_integer const& rhs);
     big_integer& operator^=(big_integer const& rhs);
@@ -45,23 +45,15 @@ struct big_integer
     friend bool operator>(big_integer const& a, big_integer const& b);
     friend bool operator<=(big_integer const& a, big_integer const& b);
     friend bool operator>=(big_integer const& a, big_integer const& b);
-    
     friend std::string to_string(big_integer const& a);
     
-// private:
-    
-    opt_vector mass;
-    int sign;
-    friend void my_resize(big_integer &a);
-    friend int abs_compare(opt_vector const& a, opt_vector const& b);
-    big_integer(unsigned long long new_int);
-    big_integer(unsigned int new_int);
-    friend int compare(big_integer const& a, big_integer const& b);
-    friend void multiply(opt_vector &res, const opt_vector &a, uint64_t b);
-    friend unsigned int binary (const big_integer &dop, const big_integer &second);
-    friend void div_long_short (big_integer &first, int second);
-    friend big_integer double_code(big_integer a);
-    friend big_integer& make_binary_op (big_integer &a, big_integer const &b, int operation);
+private:
+    friend big_integer& binaryOperation (big_integer& a, big_integer const& b, int type);
+    friend big_integer& resize(big_integer& a);
+    friend void div_long_short (big_integer& first, unsigned int b);
+    //std::vector <uint32_t> data;
+    opt_vector data;
+    bool flag;
 };
 
 big_integer operator+(big_integer a, big_integer const& b);
@@ -79,8 +71,8 @@ big_integer operator>>(big_integer a, int b);
 
 bool operator==(big_integer const& a, big_integer const& b);
 bool operator!=(big_integer const& a, big_integer const& b);
-bool operator<(big_integer const& a, big_integer const& b);
-bool operator>(big_integer const& a, big_integer const& b);
+bool operator <(big_integer const& a, big_integer const& b);
+bool operator >(big_integer const& a, big_integer const& b);
 bool operator<=(big_integer const& a, big_integer const& b);
 bool operator>=(big_integer const& a, big_integer const& b);
 
