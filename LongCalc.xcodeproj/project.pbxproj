@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2CA7025E1E586C2900A8A417 /* big_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CA702571E5860B200A8A417 /* big_integer.cpp */; };
-		2CA7025F1E586C2C00A8A417 /* opt_vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFA0F4B61DC32EAF00E99DBC /* opt_vector.cpp */; };
+		2CA702651E588C7500A8A417 /* vector_optimized.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CA702641E588C7500A8A417 /* vector_optimized.cpp */; };
 		AFA0F4BA1DC383B900E99DBC /* big_integer_testing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F41D10BB510066D49D /* big_integer_testing.cpp */; };
 		AFA0F4BD1DC383B900E99DBC /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474F91D10BB700066D49D /* gtest-all.cc */; };
 		AFA0F4BE1DC383B900E99DBC /* gtest-main.cc in Sources */ = {isa = PBXBuildFile; fileRef = AF2474FB1D10BB7F0066D49D /* gtest-main.cc */; };
@@ -30,6 +30,8 @@
 /* Begin PBXFileReference section */
 		2CA702571E5860B200A8A417 /* big_integer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = big_integer.cpp; sourceTree = "<group>"; };
 		2CA702581E5860B200A8A417 /* big_integer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = big_integer.h; sourceTree = "<group>"; };
+		2CA702641E588C7500A8A417 /* vector_optimized.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vector_optimized.cpp; sourceTree = "<group>"; };
+		2CA702661E588C8200A8A417 /* vector_optimized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector_optimized.h; sourceTree = "<group>"; };
 		AF2474EA1D10BB2B0066D49D /* LongCalc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LongCalc; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF2474ED1D10BB2B0066D49D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AF2474F41D10BB510066D49D /* big_integer_testing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = big_integer_testing.cpp; sourceTree = "<group>"; };
@@ -72,6 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				2CA702571E5860B200A8A417 /* big_integer.cpp */,
+				2CA702661E588C8200A8A417 /* vector_optimized.h */,
+				2CA702641E588C7500A8A417 /* vector_optimized.cpp */,
 				2CA702581E5860B200A8A417 /* big_integer.h */,
 				AF2474ED1D10BB2B0066D49D /* main.cpp */,
 				AF2474F41D10BB510066D49D /* big_integer_testing.cpp */,
@@ -141,11 +145,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CA7025F1E586C2C00A8A417 /* opt_vector.cpp in Sources */,
 				2CA7025E1E586C2900A8A417 /* big_integer.cpp in Sources */,
 				AFA0F4BA1DC383B900E99DBC /* big_integer_testing.cpp in Sources */,
 				AFA0F4BD1DC383B900E99DBC /* gtest-all.cc in Sources */,
 				AFA0F4BE1DC383B900E99DBC /* gtest-main.cc in Sources */,
+				2CA702651E588C7500A8A417 /* vector_optimized.cpp in Sources */,
 				AFA0F4BF1DC383B900E99DBC /* gtest.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

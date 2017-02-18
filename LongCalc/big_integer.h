@@ -4,8 +4,8 @@
 #include <iosfwd>
 #include <vector>
 #include <cstdint>
-#include "opt_vector.hpp"
-//#include "vector_optimized.h"
+//#include "opt_vector.hpp"
+#include "vector_optimized.h"
 struct big_integer
 {
     big_integer();
