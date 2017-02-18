@@ -156,7 +156,10 @@ void opt_vector::push_front(unsigned x) {
 void opt_vector::all_reverse() {
     if (is_big) {
         make_alone();
-	    std::reverse(big_number->data.begin(), big_number->data.end());
+        for (int i = 0; i < big_number->data.size() / 2; ++i) {
+            swap(big_number->data[i], big_number->data[i - 1 - big_number->data.size()]);
+        }
+	    //std::reverse(big_number->data.begin(), big_number->data.end());
     }
 }
 

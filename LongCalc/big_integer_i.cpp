@@ -1,4 +1,4 @@
-#include "big_integer.h"
+#include "big_integer_i.h"
 #include <iostream>
 #include <cstring>
 #include <stdexcept>

@@ -10,6 +10,7 @@
 
 opt_vector::opt_vector() {
     cur_size = 0;
+    
 }
 
 opt_vector::opt_vector(const opt_vector& other) {
