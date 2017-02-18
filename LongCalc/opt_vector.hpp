@@ -31,24 +31,19 @@ public:
     friend void swap(opt_vector &a, opt_vector &b);
 public:
     opt_vector();
-    opt_vector(size_t, unsigned);
-    opt_vector(const opt_vector& other);
-    
     ~opt_vector();
+    opt_vector(const opt_vector& other);
+    opt_vector(size_t, unsigned);
     opt_vector &operator=(opt_vector const &);
     unsigned& operator[](size_t);
     unsigned const& operator[](size_t) const;
     size_t size() const;
-    
     unsigned &back();
     unsigned const &back() const;
-    
     void resize(size_t);
-    
     void push_back(unsigned);
     void pop_back();
     void clear();
-    
     void all_reverse();
     bool empty();
 };
