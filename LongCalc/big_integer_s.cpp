@@ -1,7 +1,8 @@
 
 #include "big_integer_s.h"
 #include <iostream>
-
+#include <vector>
+#include <limits>
 
 
 using namespace std;
