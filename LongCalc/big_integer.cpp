@@ -388,7 +388,7 @@ big_integer& big_integer::operator/=(big_integer const& b)
             }
             u.data[i + vJ] += carry - mod;
         }
-        //resize(u);
+        resize(u);
     }
     resize(result);
     *this = result;
