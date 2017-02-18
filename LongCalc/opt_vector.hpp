@@ -49,7 +49,6 @@ public:
     void pop_back();
     void clear();
     
-    void push_front(unsigned);
     void all_reverse();
     bool empty();
 };

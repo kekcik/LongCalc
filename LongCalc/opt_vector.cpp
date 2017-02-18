@@ -154,24 +154,6 @@ void opt_vector::clear() {
     opt_size = 0;
 }
 
-void opt_vector::push_front(unsigned x) {
-    if (!big) {
-        make_alone();
-        push_back(x);
-        all_reverse();
-    } else {
-        big_number->data.insert(big_number->data.begin(), x);
-        opt_size++;
-    }
-}
-
-void opt_vector::all_reverse() {
-    if (big) {
-        make_alone();
-        std::reverse(big_number->data.begin(), big_number->data.end());
-    }
-}
-
 bool opt_vector::empty() {
     return opt_size == 0;
 }
