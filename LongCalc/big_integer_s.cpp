@@ -609,8 +609,10 @@ std::string to_string(big_integer const& a)
         }
         s += ss;
     }
-    reverse(s.begin(), s.end());
-    
+    //reverse(s.begin(), s.end());
+    for (int i = 0; i < s.size()/2; ++i) {
+        swap(s[i], s[s.size() - i - 1]);
+    }
 
     if (a.sign == 1)
     {
